@@ -1,6 +1,11 @@
 const langs: any = {
     'en': 'en-US',
     'zh': 'zh-CN',
+    'ja': 'ja',
+    'kr': 'kr',
+    'fr':'fr',
+    'de':'de',
+    'tr':'tr'
 }
 
 const LANG_ENV = process.env.LANG_ENV
@@ -55,7 +60,7 @@ export default defineNuxtConfig({
     ssr: true,
     app: {
         head: {
-            title: 'tentech',
+            title: 'kwunphi',
             htmlAttrs: {
                 //lang: LANG,
             },
@@ -110,12 +115,27 @@ export default defineNuxtConfig({
         strategy: 'prefix_except_default',
         locales: [{
             code: 'en-US',
-            iso: 'en',
+            iso: 'en-US',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
             // domain: 'https://www.solarcleanrobot.com'
         }, {
             code: 'zh-CN',
-            iso: 'zh',
+            iso: 'zh-CN',
+            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
+            // domain: 'https://www.kwunphi.com'
+        }, {
+            code: 'ja',
+            iso: 'ja',
+            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
+            // domain: 'https://www.kwunphi.com'
+        },{
+            code: 'kr',
+            iso: 'kr',
+            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
+            // domain: 'https://www.kwunphi.com'
+        },{
+            code: 'fr',
+            iso: 'fr',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
             // domain: 'https://www.kwunphi.com'
         }],

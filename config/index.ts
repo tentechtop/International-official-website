@@ -18,7 +18,7 @@ const metaEnv: any = import.meta.env
 const isEnv = metaEnv.MODE === 'development'
 let baseUrl: string
 let adminUrl: string
-console.log(metaEnv)
+console.log({ metaEnv, })
 if (metaEnv.MODE === 'production') {
   baseUrl = metaEnv.VITE_NUXT_BASE_URL
   adminUrl = metaEnv.VITE_NUXT_ADMIN_URL

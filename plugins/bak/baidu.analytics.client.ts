@@ -18,9 +18,7 @@ export default defineNuxtPlugin(nuxtApp => {
     router.afterEach((to, from) => {
         /* 增加一个PV */
         try {
-            // @ts-ignore
             window._hmt = window._hmt || []
-            // @ts-ignore
             window._hmt.push(['_trackPageview', to.fullPath])
         } catch (e) { }
     })

@@ -2,8 +2,6 @@
   <div class="common-page">
 
     错误
-
-
   </div>
 </template>
 

@@ -79,7 +79,7 @@ export default defineNuxtConfig({
             script: [
                 // { src: '@/assets/iconfont/iconfont.js', type: 'text/javascript' },
                 // 引入百度统计 https://tongji.baidu.com/
-                { src: 'https://hm.baidu.com/hm.js?bbe5df24e1c24e850d281175d369d6d0' },
+                /*{ src: 'https://hm.baidu.com/hm.js?bbe5df24e1c24e850d281175d369d6d0' },*/
                 // { src: 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js' }
                 // {
                 //     //type: 'type/javascript',

@@ -1,5 +1,5 @@
 const lang =
 	{
-		"tentech":"Tentech"
+		"tentech":"Tentech en"
 	}
 export default lang

@@ -2,21 +2,80 @@
   <div class="home-page">
 
     {{$t('tentech')}}
+
+
+
+    <div style="margin-top: 108px">
+      <NuxtLink v-for="(languageItem, langIndex) in languageList" class="language-table-item"
+                :to="getTargetDomain(languageItem.language)" @click="CurrentLanguage = languageItem">
+        <p>{{ languageItem.label }}</p>/<p>{{ languageItem.enName }}</p>
+      </NuxtLink>
+    </div>
+
+
+
+
+
+
+
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRefs, onMounted, getCurrentInstance,onUnmounted } from "vue";
-const { proxy } = getCurrentInstance();
 import { useI18n } from "vue-i18n";
-const { t } = useI18n()
+const { t, locale, locales } = useI18n()
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+import language from "~/assets/ts/language";
 
 
+const languageList = ref(language.language)
 
+const CurrentLanguage = ref(language.LanguageMap.get(locale.value))
 
+// @ts-ignore
+function getTargetDomain(language) {
+  let domain
+  // @ts-ignore
+  if (locales && locales.length) {
+    let defaultDomain
+    // @ts-ignore
+    for (let index = 0; index < locales.length; index++) {
+      // @ts-ignore
+      let item = locales[index]
+      if (item.code === language) {
+        domain = item.domain
+        if (domain) {
+          break;
+        }
+      } else if (item.code === 'en') {
+        defaultDomain = item.code
+      } else if (!defaultDomain && item.code.startsWith('en')) {
+        defaultDomain = item.code
+      }
+    }
+    if (!domain && defaultDomain) {
+      domain = defaultDomain
+    }
+
+    if (domain) {
+      return domain
+    }
+  }
+
+  return switchLocalePath(language)
+}
 
 </script>
 
 <style scoped>
-
+.language-table-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
 </style>

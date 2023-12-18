@@ -1,0 +1,93 @@
+div,
+header,
+footer,
+nav,
+ul,
+li,
+ol,
+section,
+aside {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: -apple-system, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
+}
+// 选中背景和文字颜色
+::selection {
+  background: #007BFF;
+  color: #fff;
+}
+// 去除a标签默认下划线
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+// 单行省略 ...
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// 双行省略 ...
+.overflow-hidden-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+/*.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    height: 0;
+  }
+}*/
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  // background: transparent;
+  background: var(--main-bgc);
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  background:#646060;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background:#646060;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+  background: transparent;
+
+}
+

@@ -13,6 +13,11 @@ yarn install
 # npm
 npm install
 
+打包环境
+npm install cross-env --save-dev
+npm run build:en
+npm run build:zh
+
 # pnpm
 pnpm install
 ```

@@ -1,6 +1,6 @@
 const lang =
 	{
-		"tentech":"Tentech en"
+		"tentech":"Tentech uk"
 	}
 
 	//美国 英语

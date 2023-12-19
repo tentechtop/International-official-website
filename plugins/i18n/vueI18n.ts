@@ -1,23 +1,23 @@
-import en from "../../locales/en.js";
-import zh from "../../locales/zh.js";
-import ja from "../../locales/ja.js";
-import kr from "../../locales/kr.js";
-import fr from "../../locales/fr.js";
+// @ts-ignore
+const messages = import.meta.globEager('../../locales/*');
+
+
+function getLocaleAll(): any {
+    let message: any = {};
+    for (const path in messages) {
+        const locale = path.substr(path.lastIndexOf('/') + 1, 2);
+        // @ts-ignore
+        message[locale] = messages[path].default;
+    }
+    return message;
+}
 
 
 export default defineI18nConfig(() => {
     return {
         legacy: false,
-        locale: 'en-US',
-        fallbackLocale: 'en-US',
-        messages: {
-            en,
-            zh,
-            'en-US': en,
-            'zh-CN': zh,
-            ja,
-            kr,
-            fr,
-        }
+        locale: 'en',
+        fallbackLocale: 'en',
+        messages:getLocaleAll()
     }
 })

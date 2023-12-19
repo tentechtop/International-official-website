@@ -5,12 +5,23 @@
 
 
 
+
+
+
     <div style="margin-top: 108px">
-      <NuxtLink v-for="(languageItem, langIndex) in languageList" class="language-table-item"
-                :to="getTargetDomain(languageItem.language)" @click="CurrentLanguage = languageItem">
-        <p>{{ languageItem.label }}</p>/<p>{{ languageItem.enName }}</p>
-      </NuxtLink>
+      <div v-for="(regionItem, regionIndex) in regionList" class="region-item">
+        <h1>{{regionItem.title}}</h1>
+
+        <NuxtLink v-for="(languageItem, langIndex) in regionItem.languageList" class="language-table-item"
+                  :to="getTargetDomain(languageItem.language)" @click="CurrentLanguage = languageItem">
+
+          <p>{{ languageItem.label }}</p>/<p>{{ languageItem.langName }}</p>
+
+        </NuxtLink>
+      </div>
     </div>
+
+
 
 
 
@@ -28,12 +39,14 @@ import { useI18n } from "vue-i18n";
 const { t, locale, locales } = useI18n()
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
-import language from "~/assets/ts/language";
+import allLanguage from "~/assets/ts/language";
 
 
-const languageList = ref(language.language)
+const regionList = ref(allLanguage.regionList)
 
-const CurrentLanguage = ref(language.LanguageMap.get(locale.value))
+const CurrentLanguage = ref(allLanguage.LanguageMap.get(locale.value))
+
+
 
 // @ts-ignore
 function getTargetDomain(language) {

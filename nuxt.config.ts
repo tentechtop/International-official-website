@@ -1,12 +1,10 @@
 const langs: any = {
-    'en': 'en-US',
-    'zh': 'zh-CN',
-    'ja': 'ja',
-    'kr': 'kr',
-    'fr':'fr',
-    'de':'de',
-    'tr':'tr'
+    'en': 'en',
+    'cn': 'cn',
+    'uk': 'uk',
 }
+
+
 
 const LANG_ENV = process.env.LANG_ENV
 
@@ -16,18 +14,8 @@ const LANG = langs.hasOwnProperty(CURRENT_LANG_ENV) ? langs[CURRENT_LANG_ENV] : 
 
 const NODE_ENV = process.env.NODE_ENV
 
-// const LANG = langs.en
 
-let htmlGrayCss = "html-gray.css"
-if (LANG.startsWith('zh')) {
-    htmlGrayCss = "html-gray-zh.css"
-} else {
-    htmlGrayCss = "html-gray-en.css"
-}
-
-console.error(NODE_ENV, LANG_ENV, LANG)
-
-// https://nuxt.com/docs/api/configuration/nuxt-config
+console.error("打包环境: "+NODE_ENV,"   语言环境: "+ LANG_ENV,"   主要语言: "+ LANG)
 export default defineNuxtConfig({
     buildDir: LANG_ENV ? ('.nuxt-' + LANG_ENV) : '.nuxt',
     build: {
@@ -73,7 +61,6 @@ export default defineNuxtConfig({
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-                { rel: "stylesheet", type: "text/css", href: 'https://file.kwunphi.com/kwunphi/css/' + htmlGrayCss },
                 // { rel: "stylesheet", type: "text/css", href: '@/assets/iconfont/iconfont.css' }
             ],
             script: [
@@ -114,28 +101,18 @@ export default defineNuxtConfig({
     i18n: {
         strategy: 'prefix_except_default',
         locales: [{
-            code: 'en-US',
-            iso: 'en-US',
+            code: 'en',
+            iso: 'en',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
             // domain: 'https://www.solarcleanrobot.com'
         }, {
-            code: 'zh-CN',
-            iso: 'zh-CN',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.kwunphi.com'
-        }, {
-            code: 'ja',
-            iso: 'ja',
+            code: 'cn',
+            iso: 'cn',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
             // domain: 'https://www.kwunphi.com'
         },{
-            code: 'kr',
-            iso: 'kr',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.kwunphi.com'
-        },{
-            code: 'fr',
-            iso: 'fr',
+            code: 'uk',
+            iso: 'uk',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
             // domain: 'https://www.kwunphi.com'
         }],

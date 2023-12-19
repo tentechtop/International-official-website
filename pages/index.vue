@@ -1,7 +1,7 @@
 <template>
-  <div class="home-page">
+  <div class="home-page" style="height: 1500px">
 
-    {{$t('tentech')}}
+   <h2 style="font-weight: 500">{{$t('tentech')}}</h2>
 
 
 
@@ -15,7 +15,7 @@
         <NuxtLink v-for="(languageItem, langIndex) in regionItem.languageList" class="language-table-item"
                   :to="getTargetDomain(languageItem.language)" @click="CurrentLanguage = languageItem">
 
-          <p>{{ languageItem.label }}</p>/<p>{{ languageItem.langName }}</p>
+          <p>{{ languageItem.label }}</p>  /  <p>{{ languageItem.langName }}</p>
 
         </NuxtLink>
       </div>

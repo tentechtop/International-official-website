@@ -2,19 +2,19 @@ const regionList = [
     {
         title:"Asia Pacific",
         languageList: [
-            {language:"cn", label:"中国大陆", langName:"简体中文",  desc:"简体中文", isHover:false,  isSelected:false},
+            {language:"cn", label:"中国大陆", langName:"简体中文"},
         ]
     },
     {
         title:"Europe",
         languageList: [
-            {language:"uk", label:"United Kingdom", langName:"English",   desc:"英语",    isHover:false,  isSelected:false},
+            {language:"uk", label:"United Kingdom", langName:"English"},
         ]
     },
     {
         title:"North America",
         languageList: [
-            {language:"en", label:"United States", langName:"English",   desc:"英语",    isHover:false,  isSelected:false},
+            {language:"en", label:"United States", langName:"English"},
         ]
     },
 

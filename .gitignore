@@ -11,7 +11,7 @@ node_modules.zip
 node_modules*.zip
 nuxt*.zip
 /.nuxt-*/
-kwunphi*.zip
+tentech*.zip
 /.output-*/
 .output*.zip
 

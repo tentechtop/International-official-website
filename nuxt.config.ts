@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     build: {
         // transpile: [/vue3-library-reproduction/]
         /* meta: {
-            name: 'Kwunphi',
+            name: 'Tentech',
             version: '4.0.0'
         } */
     },
@@ -48,7 +48,7 @@ export default defineNuxtConfig({
     ssr: true,
     app: {
         head: {
-            title: 'kwunphi',
+            title: 'Tentech',
             htmlAttrs: {
                 //lang: LANG,
             },
@@ -104,17 +104,17 @@ export default defineNuxtConfig({
             code: 'en',
             iso: 'en',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.solarcleanrobot.com'
+            // domain: 'https://www.tentech.top'
         }, {
             code: 'cn',
             iso: 'cn',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.kwunphi.com'
+            // domain: 'https://www.tentech.top'
         },{
             code: 'uk',
             iso: 'uk',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.kwunphi.com'
+            // domain: 'https://www.tentech.top'
         }],
         // differentDomains: NODE_ENV === 'production',
         differentDomains: false,

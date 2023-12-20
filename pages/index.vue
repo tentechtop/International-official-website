@@ -25,6 +25,10 @@
 
 
 
+    <el-dialog title="牛逼" v-model="open" width="780px" style="height: 1600px" append-to-body>
+
+
+    </el-dialog>
 
 
 
@@ -46,6 +50,8 @@ const regionList = ref(allLanguage.regionList)
 
 const CurrentLanguage = ref(allLanguage.LanguageMap.get(locale.value))
 
+
+const open = ref(true)
 
 
 // @ts-ignore

@@ -32,7 +32,7 @@
 
     </el-dialog>
 
-
+    <p v-if="gushiciData" class="content">{{ gushiciData.content }}</p>
 
 
 
@@ -46,6 +46,20 @@ const { t, locale, locales } = useI18n()
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 import allLanguage from "~/assets/ts/language";
+import { gushici } from '../api/home'
+
+
+
+const { data: gushiciData } = await useAsyncData('gushici_Get', () => gushici())
+
+
+
+
+
+
+
+
+
 
 onMounted(()=>{
   console.log(" ________                        __                          __       \n" +

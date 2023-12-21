@@ -1,7 +1,7 @@
 <template>
   <div class="home-page" style="height: 1500px">
 
-   <h2 style="font-weight: 500">{{$t('tentech')}}</h2>
+   <h2 style="font-weight: 400">{{$t('tentech')}}</h2>
 
 
 
@@ -10,7 +10,7 @@
 
     <div style="margin-top: 108px">
       <div v-for="(regionItem, regionIndex) in regionList" class="region-item">
-        <h1>{{regionItem.title}}</h1>
+        <h1 style="font-weight: 400">{{regionItem.title}}</h1>
 
         <NuxtLink v-for="(languageItem, langIndex) in regionItem.languageList" class="language-table-item"
                   :to="getTargetDomain(languageItem.language)" @click="CurrentLanguage = languageItem">
@@ -23,7 +23,9 @@
 
 
 
+    <nuxt-link :to="localePath('/test')">test页面</nuxt-link>
 
+    <nuxt-link :to="localePath('/test1')">test2页面</nuxt-link>
 
     <el-dialog title="牛逼" v-model="open" width="780px" style="height: 1600px" append-to-body>
 
@@ -45,13 +47,27 @@ const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 import allLanguage from "~/assets/ts/language";
 
+onMounted(()=>{
+  console.log(" ________                        __                          __       \n" +
+      "|        \\                      |  \\                        |  \\      \n" +
+      " \\$$$$$$$$  ______   _______   _| $$_     ______    _______ | $$____  \n" +
+      "   | $$    /      \\ |       \\ |   $$ \\   /      \\  /       \\| $$    \\ \n" +
+      "   | $$   |  $$$$$$\\| $$$$$$$\\ \\$$$$$$  |  $$$$$$\\|  $$$$$$$| $$$$$$$\\\n" +
+      "   | $$   | $$    $$| $$  | $$  | $$ __ | $$    $$| $$      | $$  | $$\n" +
+      "   | $$   | $$$$$$$$| $$  | $$  | $$|  \\| $$$$$$$$| $$_____ | $$  | $$\n" +
+      "   | $$    \\$$     \\| $$  | $$   \\$$  $$ \\$$     \\ \\$$     \\| $$  | $$\n" +
+      "    \\$$     \\$$$$$$$ \\$$   \\$$    \\$$$$   \\$$$$$$$  \\$$$$$$$ \\$$   \\$$\n" +
+      "                                                                      \n" +
+      "                                                                      \n" +
+      "                                                                      ")
+})
 
 const regionList = ref(allLanguage.regionList)
 
 const CurrentLanguage = ref(allLanguage.LanguageMap.get(locale.value))
 
 
-const open = ref(true)
+const open = ref(false)
 
 
 // @ts-ignore
@@ -78,15 +94,24 @@ function getTargetDomain(language) {
     if (!domain && defaultDomain) {
       domain = defaultDomain
     }
-
     if (domain) {
       return domain
     }
   }
-
   return switchLocalePath(language)
 }
 
+
+
+
+
+useHead({
+  title: t('seo.pages.home.title'),
+  meta: [
+    {name: 'keywords', content: t('seo.pages.home.keywords') },
+    {name: 'description', content: t('seo.pages.home.description') }
+  ],
+})
 </script>
 
 <style scoped>

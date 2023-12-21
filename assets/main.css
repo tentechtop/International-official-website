@@ -1,4 +1,61 @@
 @import './css/base.css';
 
 
+/*@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-100.ttf') format('truetype');
+    font-weight: 100;
+}
 
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-200.ttf') format('truetype');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-300.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-400.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-500.ttf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-600.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-700.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-800.ttf') format('truetype');
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: NotoSansSC;
+    src: url('https://tentech.oss-cn-shenzhen.aliyuncs.com/common/sans_font/NotoSansSC-900.ttf') format('truetype');
+    font-weight: 900;
+}*/
+
+html {
+    font-family:   "Open Sans", "PingFang SC","Microsoft YaHei", "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Arial", "sans-serif";
+}

@@ -5,12 +5,12 @@ const regionList = [
             {language:"cn", label:"中国大陆", langName:"简体中文"},
         ]
     },
-    {
+/*    {
         title:"Europe",
         languageList: [
             {language:"uk", label:"United Kingdom", langName:"English"},
         ]
-    },
+    },*/
     {
         title:"North America",
         languageList: [

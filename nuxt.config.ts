@@ -1,7 +1,6 @@
 const langs: any = {
     'en': 'en',
-    'cn': 'cn',
-    'uk': 'uk',
+    'cn': 'cn'
 }
 
 
@@ -108,11 +107,6 @@ export default defineNuxtConfig({
         }, {
             code: 'cn',
             iso: 'cn',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.tentech.top'
-        },{
-            code: 'uk',
-            iso: 'uk',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
             // domain: 'https://www.tentech.top'
         }],

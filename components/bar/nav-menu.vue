@@ -2,18 +2,11 @@
   <div class="header_box"  :class="headerState.headerClass">
 
     <div  class="pc-menu">
-
-
       <div class="nav-container">
-
-
-
       <nuxt-link :to="localePath('/')" class="logo-space">
         <img src="https://tentech.oss-cn-shenzhen.aliyuncs.com/logo/tentech-logo.png">
       </nuxt-link>
       <div class="menu-container">
-
-
         <div class="left-menu">
 
           <div class="menu-space" :style="{'min-width':menuList.length*60+'px',}">
@@ -42,26 +35,77 @@
           </div>
 
         </div>
-
-
-
         <div class="right-menu">
-
           <div class="menu-item" >
             菜单
           </div>
         </div>
       </div>
+      </div>
+    </div>
 
+    <div  class="mobile_menu flex_r_between">
+      <div class="flex_items-center">
+        <directory-button
+            :active-value="headerState.drawerShow"
+            @click="headerState.drawerShow = true"
+            style="margin-left: 20px"
+        >
+
+        </directory-button>
+      </div>
+
+
+      <div class="flex_r_between drawer-container">
+        <el-drawer
+            title="导航"
+            v-model="headerState.drawerShow"
+            direction="ltr"
+            :before-close="handleClose"
+            :append-to-body="true"
+            size="60%"
+            :z-index="9999"
+        >
+          <div class="flex justify-center items-center">
+<!--            <el-avatar class="el-avatar" :size="80">去登录</el-avatar>-->
+          </div>
+
+          <el-menu
+              style=" border-right: 0;"
+              class="drawer-sub-menu mt-[5px]"
+              mode="vertical"
+              :default-active="getPath"
+              :ellipsis="false"
+              :unique-opened="true"
+              @select="(val) => handleSelect(val, 'mobile')"
+          >
+            <el-menu-item index="/home"><i class="iconfont icon-home"></i> 主页</el-menu-item>
+
+
+            <el-sub-menu index="/resources">
+              <template #title><i class="iconfont icon-menu"></i> 产品中心</template>
+              <el-menu-item index="/resources/front"> 前端</el-menu-item>
+              <el-menu-item index="/resources/back"> 后端</el-menu-item>
+            </el-sub-menu>
+
+
+
+
+
+
+          </el-menu>
+
+
+
+
+        </el-drawer>
+
+
+
+        <SwitchTheme />
       </div>
 
     </div>
-
-    <div  class="mobile_menu">
-
-
-    </div>
-
   </div>
 </template>
 
@@ -81,6 +125,17 @@ const router = useRouter()
 const route = useRoute()
 // @ts-ignore
 import TMenu from "~/components/bar/t-menu.vue";
+// @ts-ignore
+import DirectoryButton from "~/components/bar/directory-button.vue";
+
+
+// 切换抽屉
+const handleClose = () => {
+  headerState.drawerShow = false;
+};
+const getPath = computed(() => {
+  return  localePath(route.path) ;
+});
 
 function goToTargetPage(menu){
 
@@ -205,11 +260,11 @@ const headerState = reactive({
 
 const activeIndex = ref('1')
 const activeIndex2 = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  router.push({ path: localePath(`${key}`) });
-}
-
-
+const handleSelect = async (val, type) => {
+  if (type == "mobile") {
+    headerState.drawerShow = false;
+  }
+};
 
 
 
@@ -325,4 +380,11 @@ onMounted(() => {
     transform: translateY(-100%);
   }
 }
+
+
+
+
+
+
+
 </style>

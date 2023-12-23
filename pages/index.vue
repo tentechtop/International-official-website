@@ -1,38 +1,19 @@
 <template>
-  <div class="home-page" style="height: 1500px">
+  <div class="root_node_container" >
 
-   <h2 style="font-weight: 400">{{$t('tentech')}}</h2>
-
-
+    <div class="home-banner">
 
 
-
-
-    <div style="margin-top: 108px">
-      <div v-for="(regionItem, regionIndex) in regionList" class="region-item">
-        <h1 style="font-weight: 400">{{regionItem.title}}</h1>
-
-        <NuxtLink v-for="(languageItem, langIndex) in regionItem.languageList" class="language-table-item"
-                  :to="getTargetDomain(languageItem.language)" @click="CurrentLanguage = languageItem">
-
-          <p>{{ languageItem.label }}</p>  /  <p>{{ languageItem.langName }}</p>
-
-        </NuxtLink>
-      </div>
     </div>
 
 
 
-    <nuxt-link :to="localePath('/test')">test页面</nuxt-link>
-
-    <nuxt-link :to="localePath('/test1')">test2页面</nuxt-link>
-
-    <el-dialog title="牛逼" v-model="open" width="780px" style="height: 1600px" append-to-body>
 
 
-    </el-dialog>
 
-    <p v-if="gushiciData" class="content">{{ gushiciData.content }}</p>
+
+
+
 
 
 
@@ -129,11 +110,18 @@ useHead({
 </script>
 
 <style scoped>
+@import '../styles/page/home.css';
 .language-table-item{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+}
+.testDiv{
+  width: 100%;
+  background-color: #55a532;
+  height: 500px;
+  margin-bottom: 20px;
 }
 </style>

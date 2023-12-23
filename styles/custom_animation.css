@@ -1,0 +1,77 @@
+.animate__fadeInUp_custom{
+    transition: opacity 0.35s ease,transform 10s ease;
+    animation: animate__fadeInUp_custom;
+}
+
+@keyframes animate__fadeInUp_custom {
+    0%{
+        opacity: 1;
+        transform: translateY(100px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+.root_node_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex_r_between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex_r_around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.flex_c_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex_c_between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.flex_c_around {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.flex_1 {
+    flex: 1;
+}
+.flex_c_start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.flex_r_start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.flex_wrap {
+    flex-wrap: wrap;
+}
+
+.inline_block {
+    display: inline-block;
+}

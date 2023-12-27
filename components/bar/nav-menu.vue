@@ -35,8 +35,19 @@
           </div>
 
         </div>
+
+
+
         <div class="right-menu">
-          <div class="menu-item" >
+          <div class="switch-menu-item" >
+            菜单
+          </div>
+
+          <div class="switch-menu-item" >
+            菜单
+          </div>
+
+          <div class="switch-menu-item" >
             菜单
           </div>
         </div>
@@ -261,9 +272,13 @@ const headerState = reactive({
 const activeIndex = ref('1')
 const activeIndex2 = ref('1')
 const handleSelect = async (val, type) => {
-  if (type == "mobile") {
+  console.log("val: "+val)
+
+/*  if (type == "mobile") {
     headerState.drawerShow = false;
-  }
+  }*/
+
+
 };
 
 

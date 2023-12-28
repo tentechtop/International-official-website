@@ -1,23 +1,5 @@
-const regionList = [
-    {
-        title:"Asia Pacific",
-        languageList: [
-            {language:"cn", label:"中国大陆", langName:"简体中文"},
-        ]
-    },
-    {
-        title:"Europe",
-        languageList: [
-            {language:"uk", label:"United Kingdom", langName:"English"},
-        ]
-    },
-    {
-        title:"North America",
-        languageList: [
-            {language:"en", label:"United States", langName:"English"},
-        ]
-    },
-
+const language = [
+    {language:"cn", enName:"Chinese Simplified", label:"简体中文", alias:"zh-cn", desc:"简体中文是中国大陆通用的汉字书写系统。",flag:"https://tentech.oss-cn-shenzhen.aliyuncs.com/flags/zh.svg", region: "中国大陆", isHover:false,isSelected:false},
 ];
 
 
@@ -25,12 +7,10 @@ const regionList = [
 const LanguageComparison = new Map()
 
 const LanguageMap = new Map()
-regionList.forEach((region)=>{
-    region.languageList.forEach(langItem =>{
-        LanguageComparison.set(langItem.language,langItem.label)
-        LanguageMap.set(langItem.language,langItem)
-    })
+language.forEach((lang)=>{
+    LanguageComparison.set(lang.language,lang.label)
+    LanguageMap.set(lang.language,lang)
 })
 export default {
-    regionList,LanguageComparison,LanguageMap
+    language,LanguageComparison,LanguageMap
 }

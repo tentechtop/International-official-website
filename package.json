@@ -1,7 +1,7 @@
 {
-  "name": "Tentech",
-  "version": "1.0.0",
-  "description": "十达科技",
+  "name": "Kwunphi",
+  "version": "5.0.0",
+  "description": "怪虫机器人",
   "private": true,
   "type": "module",
   "scripts": {

@@ -15,22 +15,6 @@
     >
       <swiper-slide v-for="(item, index) in bannerList">
         <div class="swiper-item">
-          <div class="intro-container animate__animated">
-
-            <!--            <nuxt-link :to="localePath(item.buttonPath)">{{item.buttonTitle }} ></nuxt-link>-->
-          </div>
-
-
-          <div class="play-video-button">
-            <span class="videoPlay">
-            </span>
-          </div>
-          <!--
-                    <div class="slideDown-button">
-                      <div class="slideDown"></div>
-                    </div>
-          -->
-
 
 
 
@@ -140,7 +124,8 @@ const props = defineProps({
 .swiper-item {
   transition: all 0.3s ease;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

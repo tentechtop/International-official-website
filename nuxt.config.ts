@@ -1,16 +1,14 @@
 const langs: any = {
-    'en': 'en',
     'cn': 'cn',
-    'uk': 'uk',
 }
 
 
 
 const LANG_ENV = process.env.LANG_ENV
 
-const CURRENT_LANG_ENV: string = LANG_ENV && langs.hasOwnProperty(LANG_ENV) ? LANG_ENV : 'en'
+const CURRENT_LANG_ENV: string = LANG_ENV && langs.hasOwnProperty(LANG_ENV) ? LANG_ENV : 'cn'
 
-const LANG = langs.hasOwnProperty(CURRENT_LANG_ENV) ? langs[CURRENT_LANG_ENV] : langs.en
+const LANG = langs.hasOwnProperty(CURRENT_LANG_ENV) ? langs[CURRENT_LANG_ENV] : langs.cn
 
 const NODE_ENV = process.env.NODE_ENV
 
@@ -21,7 +19,7 @@ export default defineNuxtConfig({
     build: {
         // transpile: [/vue3-library-reproduction/]
         /* meta: {
-            name: 'Tentech',
+            name: 'kwunphi',
             version: '4.0.0'
         } */
     },
@@ -48,7 +46,7 @@ export default defineNuxtConfig({
     ssr: true,
     app: {
         head: {
-            title: 'Tentech',
+            title: 'Kwunphi',
             htmlAttrs: {
                 //lang: LANG,
             },
@@ -77,11 +75,11 @@ export default defineNuxtConfig({
                 // }
             ]
         },
-        // automatic transition，转场动画
-        pageTransition: {
+        // automatic transition，转场动画 晃眼睛而且性能差
+/*        pageTransition: {
             name: 'scale',
             appear: true,
-            mode: 'out-in', }
+            mode: 'out-in', }*/
     },
     css: ["@/assets/main.css",
         "@/assets/iconfont/iconfont.css",
@@ -100,20 +98,10 @@ export default defineNuxtConfig({
     ],
     i18n: {
         strategy: 'prefix_except_default',
-        locales: [{
-            code: 'en',
-            iso: 'en',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.tentech.top'
-        }, {
+        locales: [ {
             code: 'cn',
             iso: 'cn',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.tentech.top'
-        },{
-            code: 'uk',
-            iso: 'uk',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
+            domain: NODE_ENV === 'production' ? 'https://www.kwunphi.top' : ''
             // domain: 'https://www.tentech.top'
         }],
         // differentDomains: NODE_ENV === 'production',

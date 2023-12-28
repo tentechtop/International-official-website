@@ -1,6 +1,6 @@
 module.exports = {
     apps: [{
-        name: 'tentech',
+        name: 'kwunphi',
         port: '3010',
         script: '../.output/server/index.mjs',
         out_file: '../logs/zh/out.log', // 日志输出

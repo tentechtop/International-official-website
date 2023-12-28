@@ -1,2 +1,2 @@
-export const TITLE = 'Tentech'
-export const COMPANY = '十达科技'
+export const TITLE = 'Kwunphi'
+export const COMPANY = '怪虫机器人'

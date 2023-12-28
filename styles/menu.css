@@ -1,0 +1,336 @@
+.nav-container{
+    position: relative; /* 添加相对定位 */
+    padding:  0 24px;
+    width: 100%;
+    height: 100%;
+    max-width: 1920px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.logo-space{
+    display: flex;
+    align-items: center;
+}
+.logo-space>img{
+    cursor: pointer;
+    width: 170px;
+}
+
+.menu-container{
+    position: relative; /* 添加相对定位 */
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.transparentClass .pc-menu .nav-container  .left-menu .menu-space .menu-item >p{
+    color: white;
+}
+
+.transparentClass .pc-menu .nav-container  .right-menu .switch-menu-item {
+    color: white;
+}
+
+
+.isSelectingMenu .pc-menu .nav-container  .left-menu .menu-space .menu-item >p{
+    color: #000;
+}
+
+.isSelectingMenu .pc-menu .nav-container  .right-menu .switch-menu-item {
+    color: #000;
+}
+
+
+
+.left-menu{
+    position: relative; /* 添加相对定位 */
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu-space{
+    position: relative; /* 添加相对定位 */
+    min-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-item {
+    z-index: 999;
+    cursor: pointer;
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* 添加相对定位 */
+}
+
+.menu-item>p{
+    font-weight: 400;
+    transition: color 0.3s ease;
+    font-size: 18px;
+    color: rgba(0,0,0,0.85);
+}
+
+.underline {
+    position: absolute;
+    bottom: 6px;
+    left: 50%; /* 将 sub-menu 水平偏移量设置为 50%，即居中对齐 */
+    transform: translateX(-50%); /* 使用 translateX 实现水平居中对齐 */
+    width: 80%;
+    height: 3px;
+    pointer-events: none; /* 防止下划线干扰鼠标事件 */
+    opacity: 0; /* 初始时透明度为0，不显示下划线 */
+    transition: opacity 0.2s ease; /* 添加渐变动画效果 */
+    background-color: #00A0E9; /* 下划线颜色为黑色 */
+}
+.menu-item:active .underline {
+    opacity: 1; /* 鼠标悬停时显示下划线 */
+    background-color: #00A0E9;
+}
+
+.menu-item:hover .underline {
+    opacity: 1; /* 鼠标悬停时显示下划线 */
+    background-color: #00A0E9;
+}
+
+
+.menu-item:hover >p{
+    color: #00A0E9;
+}
+
+.active-menu >p{
+    color: #00A0E9;
+}
+
+.active-menu .underline{
+    opacity: 1; /* 鼠标悬停时显示下划线 */
+    background-color: #00A0E9;
+}
+
+
+.sub-menu {
+    z-index: 999;
+    position: fixed;
+    top: 80px;
+    left: 50%; /* 将 sub-menu 水平偏移量设置为 50%，即居中对齐 */
+    transform: translateX(-50%); /* 使用 translateX 实现水平居中对齐 */
+    width: 100%;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.75); /* 下划线颜色为黑色 */
+    transition: opacity 0.3s ease,height 0.35s ease,display 0.3s ease; /* 添加渐变动画效果 */
+    overflow: hidden;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-select-container{
+    width: 100%;
+    height: 100%;
+    max-width: 1500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+
+
+.sub-menu-item{
+    transition: opacity 0.3s ease,display 0.3s ease;
+    height: 173px;
+    width: 25%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.select-img-box{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+
+.select-img-box>img{
+    width: 100%;
+    max-width: 200px;
+    object-fit: cover;
+}
+
+
+.sub-menu-item>h1{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+
+
+.sub-menu-item:hover{
+    background-color: #f7f7f7;
+}
+.sub-menu-item>p{
+    transition: color 0.1s ease;
+    font-size: 14px;
+}
+
+
+.button-box{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-select{
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+
+.right-menu{
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.switch-menu-item{
+    cursor: pointer;
+    min-width: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    color: #000000;
+    font-size: 16px;
+}
+
+
+
+.mobile_menu{
+    display: none;
+}
+
+.flex{
+    display: flex;
+}
+.justify-center{
+    justify-content: center;
+}
+.items-center{
+    align-items: center;
+}
+
+:deep(.el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover) {
+    background-color: transparent;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+:deep(.el-menu--vertical > .el-sub-menu .el-sub-menu__title:hover) {
+    background-color: transparent;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.drawer-sub-menu > .el-menu-item {
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.iconfont {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+
+
+
+/*pc*/
+@media screen and (min-width: 768px) {
+    .pc-menu{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .mobile_menu{
+        display: none;
+    }
+
+
+
+}
+
+/*手机*/
+@media screen and (max-width: 768px) {
+    .mobile_menu{
+        display: block;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .flex_items-center{
+        height: 100%;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .drawer-container{
+        width: 100%;
+        height: 100%;
+    }
+    .pc-menu {
+        display: none;
+    }
+}
+
+
+
+

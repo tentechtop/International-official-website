@@ -1,5 +1,4 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-    console.log("路由前"+to.path,"路由后",from.path)
 
 /*    if(to.fullPath === '/infors'){ // 重定向
         return  navigateTo('/applyCode')

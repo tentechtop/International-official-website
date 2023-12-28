@@ -1,22 +1,25 @@
 export default {
+    // @ts-ignore
     mounted(el, binding) {
-        const defaultAnimationClass = 'animate__fadeInUp';
+        const options = binding.value || { animationClass: 'animate__fadeInUpByCustom', threshold: 0.25 };
+
+        const defaultAnimationClass = 'animate__fadeInUpByCustom';
+        const defaultThreshold = 0.25;
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    console.log("离开视野")
                     // 元素进入视野时，添加指定的 CSS 类
-                    el.classList.add(binding.value || defaultAnimationClass);
+                    el.classList.add('animate__animated');
+                    el.classList.add(options.animationClass || 'animate__fadeInUpByCustom');
                     // 将透明度设置为1，使元素可见
-                    el.style.opacity = 1;
-
-                    el.style.transition = 'all 0.9s ease'
+                    /*el.style.opacity = 1;*/
+                    el.style.transition = 'all 0s ease'
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.17 });
+        }, { threshold: options.threshold || 0.25 });
         // 初始时将元素的透明度设置为0
-        el.style.opacity = 0;
+        /*el.style.opacity = 0;*/
         observer.observe(el);
     }
 }

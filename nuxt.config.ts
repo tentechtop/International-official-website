@@ -1,5 +1,4 @@
 const langs: any = {
-    'en': 'en',
     'cn': 'cn'
 }
 
@@ -7,7 +6,7 @@ const langs: any = {
 
 const LANG_ENV = process.env.LANG_ENV
 
-const CURRENT_LANG_ENV: string = LANG_ENV && langs.hasOwnProperty(LANG_ENV) ? LANG_ENV : 'en'
+const CURRENT_LANG_ENV: string = LANG_ENV && langs.hasOwnProperty(LANG_ENV) ? LANG_ENV : 'cn'
 
 const LANG = langs.hasOwnProperty(CURRENT_LANG_ENV) ? langs[CURRENT_LANG_ENV] : langs.en
 
@@ -100,11 +99,6 @@ export default defineNuxtConfig({
     i18n: {
         strategy: 'prefix_except_default',
         locales: [{
-            code: 'en',
-            iso: 'en',
-            domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''
-            // domain: 'https://www.tentech.top'
-        }, {
             code: 'cn',
             iso: 'cn',
             domain: NODE_ENV === 'production' ? 'https://www.tentech.top' : ''

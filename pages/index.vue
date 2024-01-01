@@ -110,7 +110,7 @@ useHead({
 </script>
 
 <style scoped>
-@import '../styles/page/home.css';
+/*@import '../styles/page/home.css';*/
 .language-table-item{
   display: flex;
   flex-direction: row;

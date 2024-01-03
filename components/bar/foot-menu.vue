@@ -40,8 +40,8 @@
       <div class="info-container">
         <div class="copy-right bottom-info">
           <p>Copyright © 2018-{{ formatDate(new Date()) }} Kwunphi 怪虫机器人 版权所有
-            <a href="/">隐私政策</a>
-            <a href="/">使用条款</a>
+            <nuxt-link :to="localePath('/policy')">{{ $t('foot.globalPrivacyPolicy') }}</nuxt-link>
+            <nuxt-link :to="localePath('/terms')">{{ $t('foot.termsOfUse') }}</nuxt-link>
           </p>
           <p>
             <a class="icp" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">粤ICP备2021034388号</a>
@@ -54,28 +54,17 @@
 
     <!--收纳式页脚  -->
     <div class="drawer-footer">
-      <div class="goto-top">
 
-        <div class="goto-top-button" @click="scrollToTop">
-          <h1>返回顶部</h1>
-          <img src="https://tentech.oss-cn-shenzhen.aliyuncs.com/svg/right-arrow-white.svg">
-        </div>
-        <div style="background-color: rgba(150,150,150);opacity: 0.5" class="divider"></div>
-      </div>
 
       <div class="subscribe">
-
-
-
-
         <div class="policy-terms">
-          <router-link to="/">
-            <p>隐私政策</p>
-          </router-link>
+          <nuxt-link :to="localePath('/policy')">
+            <p>{{ $t('foot.globalPrivacyPolicy') }}</p>
+          </nuxt-link>
           <span class="terms-divider">|</span>
-          <router-link to="/">
-            <p>条款</p>
-          </router-link>
+          <nuxt-link :to="localePath('/terms')">
+            <p>{{ $t('foot.termsOfUse') }}</p>
+          </nuxt-link>
         </div>
 
 
@@ -88,7 +77,6 @@
           粤公网安备 44030702004694号</a>
         </p>
         <p class="website-info"></p>
-
       </div>
 
 
@@ -189,21 +177,31 @@ const list = ref(
         title: "menu.hotProduct",
         isExpand:false,
         list: [
-          {title:"menu.rentalLEDDisplay",path:"/products",id:1,seriesId:"rental-led-display"},
-          {title:"menu.fixedInstallLEDDisplay",path:"/products",id:2,seriesId:"fixed-install-led-display"},
-          {title:"menu.fineSmallPixelLEDDisplay",path:"/products",id:3,seriesId:"fines-mall-pixel-led-display"},
-          {title:"menu.transparentLEDDisplay",path:"/products",id:4,seriesId:"transparent-led-display"},
-          {title:"menu.iposterLEDDisplay",path:"/products",id:4,seriesId:"iposter"},
-          {title:"menu.creativeDisplay",path:"/products",id:4,seriesId:"creative-display"},
+          {title:"productNickname.Kwun-B37H",path:"/products",model:"Kwun-B37H"},
+          {title:"productNickname.Kwun-B37L",path:"/products",model:"Kwun-B37L"},
+          {title:"productNickname.Kwun-B63G",path:"/products",model:"Kwun-B63G"},
+          {title:"productNickname.Kwun-B62G",path:"/products",model:"Kwun-B62G"},
+          {title:"productNickname.Kwun-B33F",path:"/products",model:"Kwun-B33F"},
+          {title:"productNickname.Kwun-B33H",path:"/products",model:"Kwun-B33H"},
         ]
       },
       {
         title: "menu.serviceAndSupport",
         isExpand:false,
         list: [
-          {title:"menu.serviceGuide",path:"/service",seriesId:"guide"},
-          {title:"menu.download",path:"/service",seriesId:"download"},
-          {title:"menu.faq",path:"/service",seriesId:"faq"},
+          { title: "foot.downloadCenter", path: "/downloads", },
+          { title: "foot.aiKwun", path: "/app", },
+          { title: "menu.faq", path: "/help", },
+          { title: "foot.BIPV", path: "/situation-design/BIPV", },
+          { title: "maintenance.kwunMaintenance", path: "/maintenance", },
+          { title: "foot.helpMeChoose", path: "/suitable-product", },
+          { title: "foot.supportedModule", path: "/kwun/supported-module", },
+          { title: "foot.kwunCare", path: "/service-support/kwun-care", },
+
+          { title: "unattended.title", path: "/unattended", },
+          { title: "foot.SustainableCleaning", path: "/kwun/sustainable-cleaning", },
+          { title: "foot.advantage", path: "/kwun/advantage", },
+          { title: "foot.comprehensive", path: "/kwun/kwun-comprehensive", },
         ]
       },
       {
@@ -212,6 +210,7 @@ const list = ref(
         list: [
           {title:"menu.newsCenter",path:"/news",},
           {title:"menu.exhibitionEvents",path:"/news",},
+
         ]
       },
       {
@@ -219,7 +218,9 @@ const list = ref(
         isExpand:false,
         list: [
           {title:"menu.successCases",path:"/case",},
-          {title:"menu.classicCases",path:"/case",},
+          { title: "foot.productVideos", path: "/video", },
+          { title: "instructionalVideos.title", path: "/video/instructional-videos", },
+          { title: "foot.onlineClassroom", path: "/course", },
         ]
       },
       {
@@ -227,25 +228,31 @@ const list = ref(
         isExpand:false,
         list: [
           {title:"menu.contact",path:"/contact",},
-          {title:"menu.feedbackAndSuggestions",path:"/",},
+          { title: "customer.leaveMessage", path: "/leave-message", },
+          { title: "foot.AfterServicePolicy", path: "/service/after-sales-policy", },
+          { title: "liveFirstAid.FirstAid", path: "/service-support/live-first-aid", },
+
+
         ]
       },
       {
         title: "menu.about",
         isExpand:false,
         list: [
-          {title:"menu.about",path:"/aboutus",},
+          {title:"menu.about",path:"/about",},
+          { title: "foot.certificate", path: "/certificate", },
+          { title: "foot.joinUs", path: "/recruitment", },
         ]
       },
+
     ]
 );
 
 function getRouterLink(sub) {
-  console.log("点击了")
   if (sub.seriesId && sub.seriesId!==""){
     router.push({
           path: localePath(`${sub.path}`),
-          query: { model: sub.seriesId }
+          query: { model: sub.model }
         }
     )
   }else {

@@ -1,274 +1,49 @@
 <template>
-  <div class="container">
-    <!--   :centeredSlides="true"  元素居中 -->
-    <swiper
-        :slidesPerView="1"
-        :spaceBetween="0"
-        :loop="true"
-        :centeredSlides="true"
-        :pagination="{clickable: true}"
-        :autoplay="{delay: delaySecond,disableOnInteraction: false}"
-        :navigation="true" :modules="modules"
-        class="mySwiper"
-        @mouseover="delaySecond=50000"
-        @mouseleave="delaySecond=20000"
-    >
-      <swiper-slide v-for="(item, index) in bannerList">
-        <div class="swiper-item">
-          <div class="intro-container animate__animated">
+  <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;height: 100vh">
 
-            <!--            <nuxt-link :to="localePath(item.buttonPath)">{{item.buttonTitle }} ></nuxt-link>-->
-          </div>
+    s
+    s
+    s
+    s
+    s
+    {{model}}
 
 
-          <div class="play-video-button">
-            <span class="videoPlay">
-            </span>
-          </div>
-          <!--
-                    <div class="slideDown-button">
-                      <div class="slideDown"></div>
-                    </div>
-          -->
-
-
-
-
-          <kw-video-load  class="solution-img"
-                          :poster="item.videoPoster"
-                          :src="item.videoUrl"></kw-video-load>
-
-
-
-
-        </div>
-      </swiper-slide>
-    </swiper>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref,defineProps} from "vue";
-const route=useRoute()
+import {onBeforeMount, onMounted, onUpdated, ref, watch,getCurrentInstance,computed} from 'vue'
+import { useRoute, useRouter } from "vue-router";
 const router = useRouter()
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Navigation, Pagination, A11y } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-const modules = [Autoplay, Pagination, Navigation, A11y];
-const delaySecond = ref(20000)
+const route = useRoute()
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n()
+// @ts-ignore
+const localePath = useLocalePath();
+// @ts-ignore
+const switchLocalePath = useSwitchLocalePath();
+
+
+
+
+
+const model = ref(route.query.model)
 
 
 
 
 
 
-const props = defineProps({
-  bannerList: {
-    type: Array,
-    required: true,
-    default: () => []
+
+
+watch(route,(newValue)=>{
+  if (route.path===localePath('/products') && newValue.query.model){
+    model.value = newValue.query.model
   }
-});
+})
 </script>
 
 <style scoped>
-.slideDown-button{
-  bottom: calc(0% - 25px);
-  z-index: 2;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.slideDown {
-  padding: 25px 15px;
-  position: absolute;
-  left: 50%;
-  margin-left: -10px;
-  bottom: 50px;
-  z-index: 30;
-  -webkit-animation: bounce 2s ease-in-out infinite;
-  animation: bounce 2s ease-in-out infinite;
-  background: url(../public/png/icon-slideDown.png) no-repeat center;
-}
-
-@keyframes bounce {
-  0% {
-    bottom: 70px;
-  }
-  50% {
-    bottom: 50px;
-  }
-  100% {
-    bottom: 70px;
-  }
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.container{
-  width: 100%;
-}
-
-.mySwiper {
-  width: 100%;
-  height: 100%;
-}
-.swiper-item {
-  transition: all 0.3s ease;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.solution-img{
-  transition: all 0.3s ease;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.play-video-button{
-  top: calc(50% - 37px);
-  z-index: 2;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.intro-container{
-  top: 19%;
-  z-index: 2;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.intro-container>P {
-  font-size: 20px;
-  font-weight: 300;
-  color: #3a3a3a;
-  margin-bottom: 8px;
-}
-.intro-container>h1 {
-  color: #3a3a3a;
-  font-size: 28px;
-}
-.intro-container>h2 {
-  color: #3a3a3a;
-  margin-top: 8px;
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 300;
-}
-.product-name {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-
-.product-name>h1 {
-  margin: 12px 0;
-  font-size: 32px;
-  line-height: 1;
-}
-.intro-container>a{
-  font-size: 16px;
-  margin-top: 16px;
-  color: #3a3a3a;
-}
-.intro-container>a:hover {
-  text-decoration: underline;
-}
-
-/*导航按钮本体*/
-:deep(.swiper-pagination-bullet) {
-  width: 48px;
-  height: 4px;
-  background-color: #fff;
-  border-radius: 0;
-}
-
-/*激活后导航按钮本体*/
-:deep(.swiper-pagination) .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: rgb(255, 255, 255);
-
-}
-
-/*导航按钮间距*/
-.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet,
-:deep(.swiper-pagination-horizontal.swiper-pagination-bullets) .swiper-pagination-bullet {
-  margin: 0 4px;
-}
-
-
-/*分页*/
-:deep(.swiper-button-prev),
-:deep(.swiper-button-next) {
-  transform: scale(1.25);
-  border-radius: 0;
-  color: rgb(255, 255, 255,0.8);
-}
-
-
-:deep(.swiper-button-prev:hover),
-:deep(.swiper-button-next:hover) {
-  color: rgb(2, 125, 255,0.8);
-}
-
-
-/*pc*/
-@media screen and (min-width: 768px) {
-
-
-}
-
-/*phone*/
-@media screen and (max-width: 768px) {
-  :deep(.swiper-button-prev),
-  :deep(.swiper-button-next) {
-    display: none;
-  }
-  .swiper-item {
-    transition: all 0.3s ease;
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .solution-img{
-    transition: all 0.3s ease;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
 
 </style>

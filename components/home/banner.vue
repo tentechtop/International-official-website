@@ -17,14 +17,27 @@
         <div class="swiper-item">
 
 
+          <div class="intro-container " style="z-index: 2" >
 
-          <kw-video-load  class="solution-img"
+
+
+            <div class="product-name  animate__animated animate__fadeInUpByCustom animate__delay-0.035s" >
+              <h1>{{ item.title1 }}</h1>
+            </div>
+
+
+
+            <nuxt-link :to="localePath(item.buttonPath)">{{item.buttonTitle }} ></nuxt-link>
+
+          </div>
+
+
+
+
+
+          <kw-video-load  class="solution-img" style="z-index: 1"
                           :poster="item.videoPoster"
                           :src="item.videoUrl"></kw-video-load>
-
-
-
-
         </div>
       </swiper-slide>
     </swiper>
@@ -122,6 +135,7 @@ const props = defineProps({
   height: 100%;
 }
 .swiper-item {
+  position: relative;
   transition: all 0.3s ease;
   width: 100%;
   height: auto;
@@ -146,8 +160,8 @@ const props = defineProps({
   align-items: center;
 }
 .intro-container{
-  top: 19%;
-  z-index: 2;
+  top: 75%;
+  z-index: 99;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -156,11 +170,11 @@ const props = defineProps({
 .intro-container>P {
   font-size: 20px;
   font-weight: 300;
-  color: #3a3a3a;
+  color: #FFF;
   margin-bottom: 8px;
 }
 .intro-container>h1 {
-  color: #3a3a3a;
+  color: #FFF;
   font-size: 28px;
 }
 .intro-container>h2 {
@@ -181,14 +195,15 @@ const props = defineProps({
   margin: 12px 0;
   font-size: 32px;
   line-height: 1;
+  color: #fff;
 }
 .intro-container>a{
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 16px;
-  color: #3a3a3a;
+  color: #FFF;
 }
 .intro-container>a:hover {
-  text-decoration: underline;
+  color: rgb(2, 125, 255,0.8);
 }
 
 /*导航按钮本体*/

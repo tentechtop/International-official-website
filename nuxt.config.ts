@@ -53,8 +53,8 @@ export default defineNuxtConfig({
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-                { hid: 'keywords', name: 'keywords', content: 'led显示屏 ,led显示屏箱体，led显示屏工厂、显示屏生产厂家、led拼接屏，led户外显示屏，led室内屏，led显示屏租赁、led全彩显示屏、led显示屏压铸箱体，led模组、租赁led显示屏' },
-                { hid: 'description', name: 'description', content: '深圳市全德视讯有限公司成立于2015年，是一家创新型专注于生产LED 显示屏的公司，拥有自己的实力工厂，我司通过提供可靠的LED显示屏产品及LED显示屏配件，24小时咨询热线: 0755 27192472' },
+                { hid: 'keywords', name: 'keywords', content: '' },
+                { hid: 'description', name: 'description', content: '' },
                 { name: 'format-detection', content: 'telephone=no' },
             ],
             link: [
@@ -76,10 +76,10 @@ export default defineNuxtConfig({
             ]
         },
         // automatic transition，转场动画 晃眼睛而且性能差
-/*        pageTransition: {
+        pageTransition: {
             name: 'scale',
             appear: true,
-            mode: 'out-in', }*/
+            mode: 'out-in', }
     },
     css: ["@/assets/main.css",
         "@/assets/iconfont/iconfont.css",
@@ -101,7 +101,7 @@ export default defineNuxtConfig({
         locales: [ {
             code: 'cn',
             iso: 'cn',
-            domain: NODE_ENV === 'production' ? 'https://www.kwunphi.top' : ''
+            domain: NODE_ENV === 'production' ? 'https://www.kwunphi.com' : ''
             // domain: 'https://www.tentech.top'
         }],
         // differentDomains: NODE_ENV === 'production',

@@ -136,4 +136,16 @@ useHead({
   justify-content: center;
   margin-bottom: 50px;
 }
+
+.el-dialog__headerbtn {
+  top: 8px !important;
+/*  background: url('https://你路径资源的url图片') left no-repeat;*/
+  background-size: cover;
+}
+
+.el-dialog__headerbtn i {
+  content: '';
+  font-size: 40px;
+}
+
 </style>

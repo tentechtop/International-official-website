@@ -16,8 +16,8 @@ function getLocaleAll(): any {
 export default defineI18nConfig(() => {
     return {
         legacy: false,
-        locale: 'en',
-        fallbackLocale: 'en',
+        locale: 'cn',
+        fallbackLocale: 'cn',
         messages:getLocaleAll()
     }
 })

@@ -23,7 +23,7 @@
     <div class="item-content">
       <h1 v-if="caseList!==null && caseList.length>0">{{ caseList[activeScene].title1 }}</h1>
       <div v-for="(scene, index) in caseList" class="description-container" :class="{ 'description-active': (index === activeScene) }">
-        <h2  class="description">{{ scene.title2 }}</h2>
+<!--        <h2  class="description">{{ scene.title2 }}</h2>-->
         <p class="link-more">
           <nuxt-link :to="localePath(scene.buttonPath)">{{scene.buttonTitle}}</nuxt-link>
         </p>

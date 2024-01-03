@@ -4,6 +4,7 @@
             style="z-index: 1"
             ref="videoPlayer"
            :controls="false"
+            autoplay
             loop
            muted
            :poster="poster"
@@ -25,7 +26,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const videoPlayer = ref<HTMLVideoElement | null>(null);
 
-const isPlaying = ref(false);
+const isPlaying = ref(true);
 const togglePlayPause = () => {
   if (videoPlayer.value) {
     // @ts-ignore

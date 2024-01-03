@@ -19,9 +19,9 @@ export default {
             width: mapWidth,
             cityList: [{
                 city: {
-                    localeName: 'aboutUs.Global[0].localeName',
+                    localeName: 'aboutUs.Global.GlobalItem1.localeName',
                     enName: 'Seattle',
-                    nationalFlag: '/images/meiguoguoqi.webp'
+                    nationalFlag: 'https://file.kwunphi.com/kwunphi4/images/svg/meiguoguoqi.webp'
                 },
                 line: {
                     left: 200,
@@ -33,9 +33,9 @@ export default {
                 }
             }, {
                 city: {
-                    localeName: 'aboutUs.Global[1].localeName',
+                    localeName: 'aboutUs.Global.GlobalItem2.localeName',
                     enName: 'Munich',
-                    nationalFlag: '/images/deguotubiao.webp'
+                    nationalFlag: 'https://file.kwunphi.com/kwunphi4/images/svg/deguotubiao.webp'
                 },
                 line: {
                     left: 100,
@@ -47,9 +47,9 @@ export default {
                 }
             }, {
                 city: {
-                    localeName: 'aboutUs.Global[2].localeName',
+                    localeName: 'aboutUs.Global.GlobalItem3.localeName',
                     enName: 'Shenzhen',
-                    nationalFlag: '/images/zgtubaio.webp'
+                    nationalFlag: 'https://file.kwunphi.com/kwunphi4/images/svg/zgtubaio.webp'
                 },
                 line: {
                     left: 100,
@@ -61,9 +61,9 @@ export default {
                 }
             }, {
                 city: {
-                    localeName: 'aboutUs.Global[3].localeName',
+                    localeName: 'aboutUs.Global.GlobalItem4.localeName',
                     enName: 'Tokyo',
-                    nationalFlag: '/images/rbtubiao.webp'
+                    nationalFlag: 'https://file.kwunphi.com/kwunphi4/images/svg/rbtubiao.webp'
                 },
                 line: {
                     right: 50,

@@ -1,5 +1,4 @@
 .footer-container{
-    margin-top: 96px;
     background-color: #1e1e1e;
 }
 
@@ -68,14 +67,13 @@
 }
 .menu-container{
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     background-color: #1e1e1e;
     border-top:1px solid rgba(0,0,0,0.15);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-
+    flex-wrap: wrap;
 }
 .info-container{
     width: 100%;
@@ -118,8 +116,6 @@
 }
 
 .body ul {
-
-
 
 
 }
@@ -289,13 +285,17 @@
 
 
 .subscribe {
-    margin: 32px 0 48px;
+    margin: 32px 0 32px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .subscribe>p {
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .email-input {
@@ -432,7 +432,7 @@
 
 .policy-terms>a {
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 18px;
     color: rgba(180, 180, 180);
 }
 
@@ -480,14 +480,9 @@
     background-color: white;
 }
 
-.language-item-container {
-    transform: translateX(8px);
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
+
+
+
 
 .language-item {
     cursor: pointer;
@@ -730,6 +725,7 @@
     .drawer-footer {
         display: flex;
         flex-direction: column;
+        align-items: center;
         width: 100%;
         overflow: hidden;
         height: auto;

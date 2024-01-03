@@ -19,30 +19,23 @@
         :navigation="true" :modules="modules"
         class="mySwiper"
         @mouseover="delaySecond=50000"
-        @mouseleave="delaySecond=20000"
+        @mouseleave="delaySecond=5000"
     >
       <swiper-slide v-for="(item, index) in productList">
         <div class="swiper-item">
           <div class="intro-container">
 
 
-          </div>
-<!--          <kw-image
-              class="solution-img"
-              :src="item.imgUrl"
-              :alt="item.alt"
-              ></kw-image>-->
 
+            <div class="product-name animate__animated animate__fadeInUpByCustom animate__delay-0.035s">
+              <h1>{{ item.title1 }}</h1>
+            </div>
+
+            <nuxt-link :to="localePath(item.buttonPath)">{{item.buttonTitle }} ></nuxt-link>
+
+
+          </div>
           <kw-video-hover class="solution-img" :img-url="item.imgUrl" :poster="item.videoPoster" :src="item.videoUrl"></kw-video-hover>
-<!--          <video
-              class="solution-img"
-              :loop="true"
-              autoplay="autoplay"
-              muted
-              :controls="false"
-              :poster="item.videoPoster"
-              :src="item.videoUrl"
-          ></video>-->
         </div>
       </swiper-slide>
     </swiper>
@@ -59,7 +52,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 const modules = [Autoplay, Pagination, Navigation, A11y];
-const delaySecond = ref(20000)
+const delaySecond = ref(5000)
 
 
 
@@ -190,7 +183,7 @@ const props = defineProps({
 }
 
 .intro-container{
-  top: 19%;
+  top: 75%;
   z-index: 2;
   position: absolute;
   display: flex;
@@ -223,13 +216,14 @@ const props = defineProps({
 
 .product-name>h1 {
   margin: 12px 0;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 1;
+  color: #fff;
 }
 .intro-container>a{
   font-size: 16px;
   margin-top: 16px;
-  color: #3a3a3a;
+  color: #FFFFFF;
 }
 .intro-container>a:hover {
   text-decoration: underline;

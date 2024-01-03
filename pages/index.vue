@@ -13,9 +13,17 @@
       <home-case :case-list="caseData"></home-case>
     </div>
 
-    <div class="home-comprehensive" :style="{ width: '100%' }">
+<!--    <div class="home-comprehensive" :style="{ width: '100%' }">
       <home-comprehensive :comprehensive-list="comprehensiveData"></home-comprehensive>
+    </div>-->
+
+
+    <div class="home-philosophy-technology" :style="{ width: '100%' }">
+      <home-philosophy-technology :philosophy-technology-list="philosophyTechnologyList"></home-philosophy-technology>
+
+
     </div>
+
 
 
 
@@ -32,7 +40,7 @@ const switchLocalePath = useSwitchLocalePath();
 
 const bannerData = ref([
   {
-    title1: "",
+    title1: "便携移动",
     title2: "",
     title3: "",
     title4: "",
@@ -42,12 +50,12 @@ const bannerData = ref([
     imgUrl: "https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
     videoPoster:"https://www.kibing-glass.com/uploadfiles/2022/10/Z20220415142617450002.jpg",
     videoUrl:"https://www.kibing-glass.com/uploadfiles/2022/04/20220414170623757.mp4",
-    buttonTitle:"了解详情",
-    buttonPath: "/",
+    buttonTitle:"了解更多",
+    buttonPath: "/philosophy-technology/portable",
     alt:"怪虫机器人"
   },
   {
-    title1: "",
+    title1: "无人值守",
     title2: "",
     title3: "",
     title4: "",
@@ -57,14 +65,14 @@ const bannerData = ref([
     imgUrl: "https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
     videoPoster:"https://www.kibing-glass.com/uploadfiles/2022/10/Z20220415142617450002.jpg",
     videoUrl:"https://www.kibing-glass.com/uploadfiles/2022/04/20220414170623757.mp4",
-    buttonTitle:"了解详情",
-    buttonPath: "/",
+    buttonTitle:"了解更多",
+    buttonPath: "/unattended",
     alt:"怪虫机器人"
   },
 ])
 const productData = ref([
   {
-    title1: "",
+    title1: "怪虫使用语义视觉技术",
     title2: "",
     title3: "",
     title4: "",
@@ -75,11 +83,11 @@ const productData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",//视频第一帧
     videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",//视频
     buttonTitle:"了解详情",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/slam",
     alt:"怪虫机器人"
   },
   {
-    title1: "",
+    title1: "为什么家用扫地机器人技术不适合光伏清洁",
     title2: "",
     title3: "",
     title4: "",
@@ -90,11 +98,11 @@ const productData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
     videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
     buttonTitle:"了解详情",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/why-not",
     alt:"怪虫机器人"
   },
   {
-    title1: "",
+    title1: "为什么RTK技术不适合光伏清洁",
     title2: "",
     title3: "",
     title4: "",
@@ -105,11 +113,11 @@ const productData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
     videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
     buttonTitle:"了解详情",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/why-not-rtk",
     alt:"怪虫机器人"
   },
   {
-    title1: "",
+    title1: "不可能三角",
     title2: "",
     title3: "",
     title4: "",
@@ -120,15 +128,30 @@ const productData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
     videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
     buttonTitle:"了解详情",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/impossible-triangle",
     alt:"怪虫机器人"
   },
+/*  {
+    title1: "可持续清洁",
+    title2: "",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解详情",
+    buttonPath: "/kwun/sustainable-cleaning",
+    alt:"怪虫机器人"
+  },*/
 ])
 const caseData = ref([
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "重复定位精度",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -137,13 +160,13 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-04.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-04.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/precise-repeatable-positioning",
     alt:"怪虫机器人"
   },
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "毫秒纠偏",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -152,13 +175,13 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-02.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-02.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/millisecond-binding",
     alt:"怪虫机器人"
   },
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "为什么摄像头在车底",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -167,13 +190,13 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-01.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-01.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/camera-under-car",
     alt:"怪虫机器人"
   },
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "为什么使用0半径转弯",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -182,13 +205,13 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-03.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-03.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/turn-on-the-spot",
     alt:"怪虫机器人"
   },
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "为什么不掉下去",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -197,13 +220,13 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-06.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-06.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/precise-edge-detection",
     alt:"怪虫机器人"
   },
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "必维万次无隐裂",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -212,13 +235,13 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03-cover.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/philosophy-technology/why-not-microcracks",
     alt:"怪虫机器人"
   },
   {
-    title1: "合作案例",
-    title2: "标题二",
-    title3: "标题三",
+    title1: "可持续清洁",
+    title2: "",
+    title3: "",
     title4: "",
     title5: "",
     title6: "",
@@ -227,7 +250,7 @@ const caseData = ref([
     videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-05.jpg",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-05.mp4",
     buttonTitle:"了解详情 >",
-    buttonPath: "/",
+    buttonPath: "/kwun/sustainable-cleaning",
     alt:"怪虫机器人"
   },
 ])
@@ -278,6 +301,26 @@ const comprehensiveData = ref([
     alt:"怪虫机器人"
   },
 ])
+const philosophyTechnologyList = ref([
+  {
+    title1: "公司简介",
+    title2: "Kwunphi 怪虫机器人",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >>",
+    buttonPath: "/about",
+    alt:"怪虫机器人"
+  },
+
+
+
+])
 
 
 
@@ -297,6 +340,7 @@ useHead({
 <style scoped>
 .home-page{
   height: auto;
+  margin-bottom:96px
 
 }
 .language-table-item{

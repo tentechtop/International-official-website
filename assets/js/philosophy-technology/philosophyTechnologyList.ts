@@ -557,13 +557,6 @@ const techList = [
             ]
         }
     },
-
-
-
-
-
-
-
 ]
 
 const techMap = new Map()

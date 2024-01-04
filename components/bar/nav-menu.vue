@@ -392,6 +392,16 @@ const menuList = ref([
         path:'/leave-message',
         imgUrl:"https://com-img-space.oss-cn-shenzhen.aliyuncs.com/svg/%E9%82%AE%E4%BB%B6.svg"
       },
+      {
+        name:"foot.AfterServicePolicy",
+        path:'/service/after-sales-policy',
+        imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/10332-icon-service-Devices.svg"
+      },
+      {
+        name:"foot.joinUs",
+        path:'/recruitment',
+        imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/10261-icon-service-Azure-DevOps.svg"
+      },
 
     ]
   },

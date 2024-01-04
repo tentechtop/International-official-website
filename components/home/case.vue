@@ -381,6 +381,14 @@ onMounted(() => {
   window.addEventListener('resize', resizeItemWidth)
   playVideo()
   waitNext()
+
+
+
+
+
+
+
+
 })
 onUnmounted(() => {
   // @ts-ignore

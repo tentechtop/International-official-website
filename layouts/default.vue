@@ -2,6 +2,7 @@
   <div>
     <nav-menu></nav-menu>
     <nuxt-page></nuxt-page>
+    <customer></customer>
     <foot-menu></foot-menu>
   </div>
 </template>

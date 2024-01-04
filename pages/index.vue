@@ -20,13 +20,19 @@
 
     <div class="home-philosophy-technology" :style="{ width: '100%' }">
       <home-philosophy-technology :philosophy-technology-list="philosophyTechnologyList"></home-philosophy-technology>
+    </div>
 
 
+    <div class="customer-case" :style="{ width: '100%' }">
+      <home-customer-case></home-customer-case>
     </div>
 
 
 
 
+    <div class="home-server" :style="{ width: '100%' }">
+      <home-server :server-list="homeServeList"></home-server>
+    </div>
 
   </div>
 </template>
@@ -47,9 +53,9 @@ const bannerData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
-    videoPoster:"https://www.kibing-glass.com/uploadfiles/2022/10/Z20220415142617450002.jpg",
-    videoUrl:"https://www.kibing-glass.com/uploadfiles/2022/04/20220414170623757.mp4",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/philosophy-technology/video/07061734_06.MOV?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/philosophy-technology/video/07061734_06.MOV?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoUrl:"https://file.kwunphi.com/kwunphi4/videos/philosophy-technology/video/07061734_06.MOV",
     buttonTitle:"了解更多",
     buttonPath: "/philosophy-technology/portable",
     alt:"怪虫机器人"
@@ -156,8 +162,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-04.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-04.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-04.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-04.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-04.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/philosophy-technology/precise-repeatable-positioning",
@@ -171,8 +177,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-02.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-02.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-02.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-02.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-02.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/philosophy-technology/millisecond-binding",
@@ -186,8 +192,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-01.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-01.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-01.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-01.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-01.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/philosophy-technology/camera-under-car",
@@ -201,8 +207,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-03.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-03.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-03.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-03.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-03.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/philosophy-technology/turn-on-the-spot",
@@ -216,8 +222,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-06.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-06.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-06.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-06.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-06.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/philosophy-technology/precise-edge-detection",
@@ -231,8 +237,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03-cover.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03-cover.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/poster/home-video-03.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/philosophy-technology/why-not-microcracks",
@@ -246,8 +252,8 @@ const caseData = ref([
     title5: "",
     title6: "",
     mediaType:"img",
-    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-05.jpg",
-    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-cover-05.jpg",
+    imgUrl: "https://file.kwunphi.com/kwunphi4/videos/new/home-video-05.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-05.mp4?x-oss-process=video/snapshot,t_1000,m_fast",
     videoUrl:"https://file.kwunphi.com/kwunphi4/videos/new/home-video-05.mp4",
     buttonTitle:"了解详情 >",
     buttonPath: "/kwun/sustainable-cleaning",
@@ -303,8 +309,8 @@ const comprehensiveData = ref([
 ])
 const philosophyTechnologyList = ref([
   {
-    title1: "公司简介",
-    title2: "Kwunphi 怪虫机器人",
+    title1: "怪虫直线",
+    title2: "矩形阵列100%全覆盖路径规划首选“弓形规划”、（动画表示“弓形规划”路径）",
     title3: "",
     title4: "",
     title5: "",
@@ -313,16 +319,154 @@ const philosophyTechnologyList = ref([
     imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
     videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
     videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
-    buttonTitle:"了解更多 >>",
-    buttonPath: "/about",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/architectural-planning",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "边框清洁",
+    title2: "雨后灰尘随水下流被边框挡住沉淀、（现实视频表示）",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/frame-cleaning",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "接缝重叠",
+    title2: "矩形阵列100%全覆盖路径规划首选“弓形规划”、（动画表示“弓形规划”路径）",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/joint-overlapping",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "SCP洁净度等级",
+    title2: "矩形阵列100%全覆盖路径规划首选“弓形规划”、（动画表示“弓形规划”路径）",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/scp-cleanliness-level",
+    alt:"怪虫机器人"
+  },
+
+  /*高效*/
+  {
+    title1: "一人多机",
+    title2: "机器人能减少人员使用成本更能将人从繁重劳动里解放出来、",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/one-person-multiple-machines",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "各种场景都能洗",
+    title2: "机器人能减少人员使用成本更能将人从繁重劳动里解放出来、",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/suitable-for-washing-in-various-scenarios",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "看不到的阵列边缘怎么清洗",
+    title2: "机器人能减少人员使用成本更能将人从繁重劳动里解放出来、",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://x-human.cn/uploads/20220510/4513d0dc869c5f3fa3f463526310a012.jpg",
+    videoPoster:"https://file.kwunphi.com/kwunphi4/images/charging/%E5%88%87%E7%89%87_03.jpg",
+    videoUrl:"https://1311561956.vod2.myqcloud.com/c8f1b1e8vodcq1311561956/97da5f31243791575541930272/6N8KVggvaQwA.mp4",
+    buttonTitle:"了解更多 >",
+    buttonPath: "/philosophy-technology/how-to-clean-unseen-array-edges",
     alt:"怪虫机器人"
   },
 
 
 
 ])
+const homeServeList = ref([
+  {
+    title1: "查找常见问题解答",
+    title2: "矩形阵列100%全覆盖路径规划首选“弓形规划”、（动画表示“弓形规划”路径）",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/book-alt-dark-1?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=48&hei=48&qlt=95&fmt=png-alpha&fit=constrain",
+    videoPoster:"",
+    videoUrl:"",
+    buttonTitle:"定价常见问题解答 >",
+    buttonPath: "/help",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "获取帮助支持",
+    title2: "矩形阵列100%全覆盖路径规划首选“弓形规划”、（动画表示“弓形规划”路径）",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/resources-alt-dark-1?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=48&hei=48&qlt=95&fmt=png-alpha&fit=constrain",
+    videoPoster:"",
+    videoUrl:"",
+    buttonTitle:"提出问题并获取解答 >",
+    buttonPath: "/service",
+    alt:"怪虫机器人"
+  },
+  {
+    title1: "联系销售人员",
+    title2: "雨后灰尘随水下流被边框挡住沉淀、（现实视频表示）",
+    title3: "",
+    title4: "",
+    title5: "",
+    title6: "",
+    mediaType:"img",
+    imgUrl: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/blog-alt-dark?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=48&hei=48&qlt=95&fmt=png-alpha&fit=constrain",
+    videoPoster:"",
+    videoUrl:"",
+    buttonTitle:"与 Kwunphi 销售人员通话、聊天或建立联系 >",
+    buttonPath: "/contact",
+    alt:"怪虫机器人"
+  },
 
-
+])
 
 
 
@@ -361,6 +505,16 @@ useHead({
 .home-comprehensive{
   position: relative;
   margin-top: 72px;
+}
+.home-philosophy-technology{
+  margin-top: 96px;
+}
+.customer-case{
+  margin-top: 96px;
+}
+.home-server{
+  margin-top: 96px;
+  padding: 48px 0;
 }
 /*pc*/
 @media screen and (min-width: 768px){

@@ -7,11 +7,9 @@
         :loop="true"
         :centeredSlides="true"
         :pagination="{clickable: true}"
-        :autoplay="{delay: delaySecond,disableOnInteraction: false}"
+        :autoplay="{delay: 10000,disableOnInteraction: false}"
         :navigation="true" :modules="modules"
         class="mySwiper"
-        @mouseover="delaySecond=50000"
-        @mouseleave="delaySecond=20000"
     >
       <swiper-slide v-for="(item, index) in bannerList">
         <div class="swiper-item">
@@ -57,7 +55,10 @@ const modules = [Autoplay, Pagination, Navigation, A11y];
 const delaySecond = ref(20000)
 
 
-
+/*
+@mouseover="delaySecond=50000"
+@mouseleave="delaySecond=20000"
+*/
 
 
 
@@ -219,6 +220,11 @@ const props = defineProps({
   background-color: rgb(255, 255, 255);
 
 }
+
+
+
+
+
 
 /*导航按钮间距*/
 .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet,

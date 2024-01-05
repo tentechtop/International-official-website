@@ -269,41 +269,35 @@ const menuList = ref([
     subMeuns: [
       {
         name:"productNickname.Kwun-B33H",
-        path:'/products',
-        model:"Kwun-B33H",
+        path:'/products/Kwun-B33H',
         imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/33/bg-colourless/01.png",
       },
       {
         name:"productNickname.Kwun-B32H",
-        path:'/products',
-        model:"Kwun-B32H",
+        path:'/products/Kwun-B32H',
         imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/33/bg-colourless/01.png",
       },
       {
 
         name:"productNickname.Kwun-B32L",
-        path:'/products',
-        model:"Kwun-B32L",
+        path:'/products/Kwun-B32L',
         imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/33/bg-colourless/01.png",
       },
       {
 
         name:"productNickname.Kwun-B22H",
-        path:'/products',
-        model:"Kwun-B22H",
+        path:'/products/Kwun-B22H',
         imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/22/bg-colourless/02.png",
       },
       {
         name:"productNickname.Kwun-B22L",
-        path:'/products',
-        model:"Kwun-B22L",
+        path:'/products/Kwun-B22L',
         imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/22/bg-colourless/02.png",
       },
       {
 
         name:"productNickname.Kwun-B11L",
-        path:'/products',
-        model:"Kwun-B11L",
+        path:'/products/Kwun-B11L',
         imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/11/bg-colourless/1.png",
       },
     ]

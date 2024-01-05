@@ -8,7 +8,6 @@
       <home-product :product-list="productData"></home-product>
     </div>
 
-
     <div class="home-case-list" :style="{ width: '100%' }">
       <home-case :case-list="caseData"></home-case>
     </div>
@@ -26,8 +25,6 @@
     <div class="customer-case" :style="{ width: '100%' }">
       <home-customer-case></home-customer-case>
     </div>
-
-
 
 
     <div class="home-server" :style="{ width: '100%' }">
@@ -431,7 +428,7 @@ const homeServeList = ref([
     imgUrl: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/book-alt-dark-1?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=48&hei=48&qlt=95&fmt=png-alpha&fit=constrain",
     videoPoster:"",
     videoUrl:"",
-    buttonTitle:"定价常见问题解答 >",
+    buttonTitle:"提出问题并获取解答 >",
     buttonPath: "/help",
     alt:"怪虫机器人"
   },
@@ -446,7 +443,7 @@ const homeServeList = ref([
     imgUrl: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/resources-alt-dark-1?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=48&hei=48&qlt=95&fmt=png-alpha&fit=constrain",
     videoPoster:"",
     videoUrl:"",
-    buttonTitle:"提出问题并获取解答 >",
+    buttonTitle:"服务与支持 >",
     buttonPath: "/service",
     alt:"怪虫机器人"
   },

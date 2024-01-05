@@ -561,12 +561,9 @@ const techList = [
 
 const techMap = new Map()
 
-
-
 techList.forEach((tech,index)=>{
     techMap.set(tech.type,tech.pageDate)
 })
-
 
 export default {
     techList,techMap

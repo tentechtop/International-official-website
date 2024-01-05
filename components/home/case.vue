@@ -573,9 +573,9 @@ const props = defineProps({
 .item-content>h1 {
   text-align: center;
   color: white;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 21px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .description-container {

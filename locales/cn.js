@@ -1,6 +1,7 @@
 const lang =
 	{
 		"":"",
+		"pages.home":"怪虫机器人",
 		"kwunphi":"怪虫机器人",
 		"close":"关闭",
 		"learnMore":"了解更多",
@@ -396,10 +397,13 @@ const lang =
 				"FinalInterpretation":"深圳怪虫机器人有限公司拥有数据最终解释权"
 			},
 			"ProductSpecifications":"产品规格",
+			"ProductSpecificationsDownload":"产品规格书下载",
+			"baseSpecs":"基本参数",
+			"DetailedParameters":"详细参数",
 			"Specifications":"产品规格参数",
 			"ChooseYouNeed":"选你所需",
-			"PackingListComparison":"包装清单对比",
-			"HotSellingAccessories":"热销配件",
+			"PackingListComparison":"包装清单",
+			"HotSellingAccessories":"包装配件",
 			"RecommendedWorkingConditions":"工作条件(干刷/水洗)",
 			"standardParameters": {
 				"title": "常规参数",

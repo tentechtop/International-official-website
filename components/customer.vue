@@ -1,17 +1,105 @@
 <template>
   <div>
     <a v-if="!isShowChatWindows" class="root-page"
-         @mouseleave="isMouseOver=false"
-         @mouseover="isMouseOver=true">
+         @click="isMouseOver=!isMouseOver">
 <!--      :href="getRandomChatCustomer()" target="_blank"-->
       <img src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189">
       <div class="point"></div>
     </a>
 
 
+    <transition name="fade">
+    <div v-if="isMouseOver" class="chat-windows">
+      <div class="chat-header-container">
+        <div class="wx-chat-container">
+          <img src="https://file.kwunphi.com/kwunphi4/images/svg/%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95.svg">
+          <h1>聊天</h1>
+        </div>
+        <div class="message-notice-container">
+          <div class="avatar-container">
+            <img src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189&quot" alt="聊天头像">
+            <div class="hintPoint"></div>
+          </div>
+          <p>怪虫机器人</p>
+          <h1>Kwunphi</h1>
+          <div class="send-email-container">
+            <div class="hot-point" v-for="(pItem,PIndex) in 3"></div>
+          </div>
+        </div>
+        <div class="close-button" @click="isMouseOver=false">
+          <img src="https://file.kwunphi.com/kwunphi4/images/svg/%E5%85%B3%E9%97%AD.svg">
+        </div>
+      </div>
+
+      <transition name="fadeEmo">
+      <div v-if="isOpenEmo" class="emotion-container">
+        <div class="emo-box">
+
+          <div class="emo-item" v-for="(eItem,eIndex) in emoList" @click="isOpenEmo=false">
+            <kw-image class="emo-item-img" :src="eItem.imgUrl"></kw-image>
+          </div>
 
 
 
+
+        </div>
+      </div>
+      </transition>
+
+
+      <div class="message-list-container">
+
+      </div>
+
+      <div class="message-input-container">
+        <div class="split-line"></div>
+        <div class="message-input">
+          <el-input
+              class="no-border-input"
+              resize="none"
+              v-model="messageContent"
+              :autosize="{ minRows: 1, maxRows: 1 }"
+              type="textarea"
+              placeholder=""
+          />
+
+
+          <div v-if="getAvailableButton" class="send-button">
+
+
+          </div>
+
+
+
+        </div>
+        <div class="bottom-message-input">
+          <div class="file-input-contianer">
+
+            <div class="emo-container" @click="isOpenEmo=!isOpenEmo">
+              <img src="https://file.kwunphi.com/kwunphi4/images/svg/%E8%A1%A8%E6%83%85.svg">
+            </div>
+
+
+            <div class="file-container"   @click="uploadFile">
+              <input type="file" ref="fileInput" style="display:none" @change="onFileChange">
+              <img   src="https://file.kwunphi.com/kwunphi4/images/svg/%E5%9B%9E%E5%BD%A2%E9%92%88.svg">
+            </div>
+
+
+
+
+
+
+          </div>
+          <div class="bottom-logo">
+            <p>Kwunphi</p>
+            <img src="https://file.kwunphi.com/kwunphi4/images/svg/%E6%B6%88%E6%81%AF.svg">
+            <p>怪虫</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </transition>
 
 
 
@@ -36,6 +124,69 @@ import keywordsArray from "assets/js/keywordsChat/keywordsArray";
 import { md } from "assets/libs/markdown";
 /*let apiKey = "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";*/
 
+
+
+const emoList = ref([
+  {
+    name:"微笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg",
+    text:"😊",
+    markdown:"![微笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+  {
+    name:"大笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%A4%A7%E7%AC%91.svg",
+    text:"😁",
+    markdown:"![大笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+  {
+    name:"微笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg",
+    text:"😊",
+    markdown:"![微笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+  {
+    name:"大笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%A4%A7%E7%AC%91.svg",
+    text:"😁",
+    markdown:"![大笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+
+])
+
+
+
+
+
+
+
+
+const isOpenEmo = ref(false)
+
+// 创建一个ref来持有文件输入元素的引用
+const fileInput = ref<HTMLInputElement | null>(null);
+
+// 文件选择事件处理函数
+const onFileChange = () => {
+  if (fileInput.value) {
+    // @ts-ignore
+    const selectedFile = fileInput.value.files?.[0];
+    if (selectedFile) {
+
+    }
+  }
+};
+
+
+// 模拟点击文件输入事件
+const uploadFile = () => {
+  if (fileInput.value) {
+    // @ts-ignore
+    fileInput.value.click();
+  }
+};
+
+
 function gotoTargetPage(){
   router.push({ path: localePath('/leave-message') })
 }
@@ -45,12 +196,17 @@ let isConfig = ref(true);
 let isTalking = ref(false);
 const isMouseOver = ref(false)
 let messageContent = ref("");
-
 const isShowChatWindows = ref(false)
 
 
 
+
+//上滑取消
 watch(messageContent,(newValue)=>{
+  if (messageContent.value.trim()!==''){
+
+
+  }
 
 })
 function isStringAllSpaces(inputString) {
@@ -58,14 +214,6 @@ function isStringAllSpaces(inputString) {
   return inputString.trim() === '';
 }
 
-
-
-function getHtml(content){
-  let html = md.render(content).replace(/<li>/g, `<li style='opacity: 1;margin:0 15px'> `)
-  return html.replace(/<p>.*?<img.*?<\/p>/g, (match: string) => {
-    return match.replace(/<img/g, '<img style="max-width: 200px; max-height: 200px"')
-  });
-}
 
 
 
@@ -467,11 +615,22 @@ const clearMessageContent = () => (messageContent.value = "");
 
 </script>
 
+
+<style>
+.no-border-input .el-textarea__inner {
+  border: 0;
+  box-shadow:none;
+  padding: 5px 0px;
+}
+
+
+
+</style>
+
 <style scoped>
 .root-page{
   z-index: 9999;
   cursor: pointer;
-
   right: 12px;
   bottom: 12px;
   border-radius: 100px;
@@ -483,29 +642,6 @@ const clearMessageContent = () => (messageContent.value = "");
   align-items: center;
   justify-content: flex-start;
 }
-
-
-
-@keyframes breathing {
-  0% {
-    box-shadow: 0 0 5px 2px rgba(2, 70, 255, 0.2);
-  }
-
-  100% {
-    box-shadow: 0 0 7px 3px rgba(2, 70, 255, 0.8);
-  }
-}
-
-@keyframes breathing-deep {
-  0% {
-    box-shadow: 0 0 5px 2px rgba(2, 70, 255, 0.3);
-  }
-
-  100% {
-    box-shadow: 0 0 10px 6px rgba(2, 70, 255, 0.8);
-  }
-}
-
 .root-page>img{
   border-radius: 1000px;
   width: 100%;
@@ -521,397 +657,294 @@ const clearMessageContent = () => (messageContent.value = "");
   width: 18px;
   border-radius: 10px;
 }
-
-
-.root-page>p{
-  width: 40%;
-  text-align: center;
-  font-size: 11px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-.customer{
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.customer>img{
-  width: 42px;
-  object-fit: cover;
-  border-radius: 100px;
-}
-.card-container{
-  /*overflow: hidden;*/
+.chat-windows{
   z-index: 9999;
-  cursor: pointer;
-  height: 222px;
-  width: 230px;
-  transform: translateX(320px);
-  opacity: 0;
-  right: 15px;
-  bottom: 35px;
+  border-radius: 5px;
   position: fixed;
-  transition: height 0.2s ease,width 0.5s ease,transform 0s ease,opacity 0.6s ease;
+  right: 12px;
+  bottom: 80px;
+  width: 400px;
+/*  height: auto;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.28);
+}
+.chat-header-container{
+  position: relative;
+  padding: 10px 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1c293b !important;
+  background-color: rgba(59,130,246);
+}
+.chat-header-container:before{
+  background-image: url(https://client.crisp.chat/static/images/tiles/squares-in-squares.svg?0a15717)!important;
+  background-size: 54px!important;
+  opacity: .075!important;
+  content: ""!important;
+  background-repeat: repeat!important;
+  position: absolute!important;
+  left: 0!important;
+  right: 0!important;
+  top: 0!important;
+  bottom: 0!important;
+  z-index: 0!important;
+}
+
+.wx-chat-container{
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 13px;
+  padding: 9px 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
-  border-radius: 10px;
-}
-.hoverCard{
-  transition: transform 0.5s ease;
-  transform: translateX(-35px);
-  opacity: 1;
-}
-.card{
-  /*margin: 1px 1px;*/
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  height: calc(100% - 2px);
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  background-color: #004ec0;
 }
-.noshow-card{
-  height: 100px;
-  width: 10px;
-  opacity: 0;
+.wx-chat-container:hover,wx-chat-container:active{
+  background-color: #0050c7;
 }
-
-.card >h1{
-  color: rgba(0,0,0,0.65);
+.wx-chat-container>img{
+  margin-right: 3px;
+  width: 15px;
+}
+.wx-chat-container>h1{
+  color: #FFFFFF;
   font-size: 13px;
 }
-.chat-windows{
-  transition: all 0.3s ease;
-  opacity: 0;
-  height: 0;
-  z-index: 9999;
-  position: fixed;
-  right: 45px;
-  bottom: 20px;
-  width: 400px;
-  background-color: #fff;
+
+.close-button{
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+.close-button>img{
+  width: 100%;
+}
+
+.message-notice-container{
+  margin-top: 10px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-container{
+  margin-right: 6px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.avatar-container>img{
+  z-index: 1;
+  border-radius: 100px;
+  width: 30px;
+}
+.hintPoint{
+  z-index: 2;
+  border-radius: 100px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 10px;
+  width: 10px;
+  background-color: #00dc82;
+  outline: 2px solid  rgba(59,130,246);
+}
+.message-notice-container>h1{
+  font-size: 12.4px!important;
+  line-height: 18px!important;
+  color: #FFFFFF;
+}
+.message-notice-container>p{
+  font-size: 12.4px!important;
+  line-height: 18px!important;
+  color: #FFFFFF;
+}
+
+.send-email-container{
+  cursor: pointer;
+  z-index: 1;
+  background-color: #0159d9;
+  width: 27px;
+  height: 27px;
+  margin-left: 6px;
   border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 8px 8px rgba(100, 100, 100, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
-.windows-header{
-  background-image: url("https://file.kwunphi.com/kwunphi4/images/customService/20231019162909.png");
-  background-size: cover;
+.send-email-container:hover{
+  background-color: #0154ce;
+}
+.hot-point{
+  border-radius: 10px;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(200,200,200);
+  margin:1px;
+}
+
+.message-list-container{
+  overflow-x: hidden;
+  overflow-y: auto;
   z-index: 3;
-  top: 0;
-  position: sticky;
   width: 100%;
-  height: 70px;
+  height: 486px;
+  background-color: #FFFFFF;
+}
+.message-input-container{
+  background-color: #FFFFFF;
+  z-index: 3;
+  width: 100%;
+  height: 94px;
+  padding: 0 12px;
+}
+.message-input{
+  padding: 7px 0;
+  position: relative;
+}
+
+.send-button{
+  position: absolute;
+  right: 0;
+  height: 33px;
+  width: 33px;
+  border-radius: 5px;
+  background-color: #0c7abf;
+  bottom: calc(-100% + 58px);
+}
+
+
+
+
+.split-line{
+  height: 1px;
+  z-index: 3;
+  width: 100%;
+  background-color: rgba(0,0,0,0.12);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 0.25s ,opacity 0.25s ;
+  transform: translateY(0px);
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+  transform: translateY(400px);
+}
+
+.fadeEmo-enter-active,
+.fadeEmo-leave-active {
+  transition: opacity 0.2s ;
+}
+
+.fadeEmo-enter,
+.fadeEmo-leave-active {
+  opacity: 0;
+}
+
+.bottom-message-input{
+  width: 100%;
+  height: 44px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
 }
-.chat-logo-container{
-  padding-left: 20px;
+
+.bottom-logo{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
-.chat-logo-container>img{
-  width: 50px;
-  object-fit: cover;
-  border-radius: 1000px;
+.bottom-logo>p{
+  font-size: 15px;
+  color: #92A9C1;
+}
+.bottom-logo>img{
+  margin: 0 3px;
+  width: 15px;
+}
+.file-input-contianer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.emo-container{
   margin-right: 6px;
-}
-.chat-logo-container>p{
-  color: #fff;
-}
-.welcome{
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.welcome>h1{
-  font-size: 16px;
-  color: #fff;
-}
-.welcome>p{
-  font-weight: 100;
-  font-size: 12px;
-  color: #fff;
-}
-.show-chat-windows{
-  opacity: 1;
-  height: 560px;
-}
-
-.close-line{
-
-  width: 20px;
-  height: 3px;
-  background-color: #fff;
-}
-.close-button{
-  margin-right: 20px;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 20px;
 }
-.chat-message-container{
-  z-index: 2;
+.emo-container>img{
   width: 100%;
-  height: 60%;
-  background-color: #f3f3f3;
-  overflow: hidden;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  opacity: 0.50;
 }
-.message-send-container{
-  border-top: 1px solid rgba(0,0,0,0.15);
-  width: 100%;
-  height: calc(40% - 60px);
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.service-level-container{
-  width: 100%;
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-}
-.human-service{
-  cursor: pointer;
-  margin-right: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-.human-service>img{
+.file-container{
   margin-right: 6px;
-  width: 20px;
-}
-.human-service>a{
-  font-size: 12px;
-  color: #005ABC;
-}
-.message-container{
-  width: 100%;
-  min-height: 50px;
-}
-.message-input{
-  padding: 0 10px;
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  font-weight: 700;
-  white-space: pre-wrap;
-  resize: none; /* 禁止用户手动调整大小 */
-  color: black; /* 设置字体颜色为黑色 */
-  font-style:normal;
-}
-.message-input:focus{
-  border: none;
-  outline: none;
-}
-.send-message-button-container{
-  padding: 0px 20px ;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-}
-.send-message-button{
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
-  border: 1px solid rgba(0,0,0,0.25);
-  padding: 4px 18px;
-  background-color: #fff;
-  color: rgba(0,0,0,0.55);
+  width: 18px;
+  height: 18px;
+  border-radius: 20px;
 }
-.available{
-  background-color: #0060E7;
-  color: #fff;
-  border: 1px solid rgba(0,0,0,0);
-}
-.message-item{
-  padding: 8px 8px;
+.file-container>img{
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-
+  opacity: 0.60;
 }
-.user-message-content{
-  overflow: hidden;
+.emotion-container{
+  z-index: 99;
+  bottom: 40px;
+  left: 0;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-.user-message{
-  justify-content: flex-end;
-}
-.user-message>img{
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-  border-radius: 5000px;
-}
-.service-message{
-
-  justify-content: flex-start;
-}
-.service-message>img{
-  width: 30px;
-  object-fit: cover;
-  border-radius: 5000px;
-}
-.no-user-message-item{
-  overflow: hidden;
-  color: #000;
-  font-size: 14px;
-  border-radius: 5px;
-  background-color: #fff;
-  padding:  5px;
-  margin-left: 5px;
-
-}
-.no-user-message-item >p >img{
-  max-width: 200px;
-  max-height: 200px;
-}
-
-.user-message-item{
-  color: #fff;
-  border-radius: 5px;
-  background-color: #38A1DF;
-  padding: 5px;
-  margin-right: 5px;
-  font-size: 14px;
-}
-.card-item{
-  width: 100%;
-  height: 32%;
-}
-.card-line{
-  width: 90%;
-  height: 2px;
-  background-color: rgba(0,0,0,0.2);
-}
-.call-phone{
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.call-phone>img{
-  width: 24px;
-  margin-right: 8px;
-}
-.phone-number{
-  display: flex;
-  flex-direction: column;
-}
-.phone-number>p{
-  font-size: 16px;
-}
-.phone-number>h1{
-  color: #0d7ae1;
-  font-size: 18px;
-}
-.contact{
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-.contact>img{
-  width: 24px;
-  margin-right: 8px;
-}
-.contact>p{
-  font-size: 16px;
-  color: #000;
-  margin-right: 8px;
-}
-.contact-button{
-  padding: 6px 12px;
-  background-color: #004e98;
-  color: #fff;
-  font-size: 14px;
-}
-.more-contact{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.more-contact>img{
-  width: 14px;
-}
-.more-contact>p{
-  margin-right: 8px;
-  font-size: 16px;
-}
-.hot-question{
-  width: 100%;
-  min-height: 100px;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
 }
-.hot-question-container{
-  padding: 10px 20px;
-  border-radius: 10px;
+.emo-box{
+  padding: 5px 10px;
+  width: 98%;
+  background-color: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.emo-item{
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 9%;
+  margin: 4px 6px;
+  height: 32px;
+}
+
+.emo-item-img{
   width: 100%;
-  height: 100%;
-  background-color: #fff;
-}
-@media screen and (max-width: 1023px){
-  .chat-windows{
-    right: 0px;
-
-  }
-
-}
-@media screen  and (max-width: 480px){
-
-
+  height: 0;
+  padding-bottom: 100%;
 }
 </style>

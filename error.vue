@@ -1,12 +1,12 @@
 <template>
   <div class="common-page">
+    <el-empty :description="error.statusCode" />
 
     错误
   </div>
 </template>
 
 <script setup lang="ts">
-import config from '~~/config'
 const props = defineProps(['error'])
 
 

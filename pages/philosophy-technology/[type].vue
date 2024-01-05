@@ -12,7 +12,7 @@
         <div  class="item-container"  v-for="(item,index) in pageData.pageInfoList">
           <div v-if="index %2 === 0" class="next-item">
             <div class="introduce-container">
-
+<!--            <h1>{{item.title1}}</h1>-->
               <div class="video-container">
                 <kw-video-controllers class="video-item" :img-url="item.imgUrl" :poster="item.videoPoster" :src="item.videoUrl"></kw-video-controllers>
               </div>
@@ -25,7 +25,7 @@
 
 
           <div v-else class="next-item">
-            <h1>{{item.title1}}</h1>
+<!--            <h1>{{item.title1}}</h1>-->
             <div class="introduce-container">
               <div class="text-container" style="padding-right: 40px">
                 <h1>{{item.title1}}</h1>

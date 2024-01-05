@@ -215,8 +215,9 @@ const props = defineProps({
 }
 
 .product-name>h1 {
+  font-weight: 700;
   margin: 12px 0;
-  font-size: 24px;
+  font-size: 30px;
   line-height: 1;
   color: #fff;
 }

@@ -177,12 +177,12 @@ const list = ref(
         title: "menu.hotProduct",
         isExpand:false,
         list: [
-          {title:"productNickname.Kwun-B37H",path:"/products",model:"Kwun-B37H"},
-          {title:"productNickname.Kwun-B37L",path:"/products",model:"Kwun-B37L"},
-          {title:"productNickname.Kwun-B63G",path:"/products",model:"Kwun-B63G"},
-          {title:"productNickname.Kwun-B62G",path:"/products",model:"Kwun-B62G"},
-          {title:"productNickname.Kwun-B33F",path:"/products",model:"Kwun-B33F"},
-          {title:"productNickname.Kwun-B33H",path:"/products",model:"Kwun-B33H"},
+          {title:"productNickname.Kwun-B33H",path:"/products/Kwun-B33H"},
+          {title:"productNickname.Kwun-B32H",path:"/products/Kwun-B32H"},
+          {title:"productNickname.Kwun-B32L",path:"/products/Kwun-B32L"},
+          {title:"productNickname.Kwun-B22H",path:"/products/Kwun-B22H"},
+          {title:"productNickname.Kwun-B22L",path:"/products/Kwun-B22L"},
+          {title:"productNickname.Kwun-B11L",path:"/products/Kwun-B11L"},
         ]
       },
       {
@@ -197,7 +197,6 @@ const list = ref(
           { title: "foot.helpMeChoose", path: "/suitable-product", },
           { title: "foot.supportedModule", path: "/kwun/supported-module", },
           { title: "foot.kwunCare", path: "/service-support/kwun-care", },
-
           { title: "unattended.title", path: "/unattended", },
           { title: "foot.SustainableCleaning", path: "/kwun/sustainable-cleaning", },
           { title: "foot.advantage", path: "/kwun/advantage", },

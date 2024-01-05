@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="split-line"></div>
+<!--    <div class="split-line"></div>-->
     <div class="product-detail-container">
       <div class="view-container">
         <div class="img-swiper-container">
@@ -20,14 +20,35 @@
       </div>
       <div class="specs-detail-container">
         <h1>{{ $t(productInfo.productSpecifications.productTitle) }}</h1>
-        <h3>{{ $t('productSpecs.ProductSpecifications') }}</h3>
+
+        <h3>{{ $t('productSpecs.baseSpecs') }}</h3>
         <ul>
           <li v-for="(item, index) in productInfo?.productSpecifications.Specifications"> {{ $t(item.name) }}: {{ $t(item.value) }}</li>
         </ul>
-        <nuxt-link :to="localePath(`/specs/${productInfo.productModel}`)">{{ $t('productSpecs.ProductSpecifications') }} ></nuxt-link>
-        <h2 v-if="productInfo.productSpecifications.accessories.length > 0">{{ $t('productSpecs.ChooseYouNeed') }}</h2>
-        <nuxt-link v-if="productInfo.productSpecifications.accessories.length > 0"
-          :to="{ path: '#', query: { productId: 1 } }">{{ $t('productSpecs.PackingListComparison') }}</nuxt-link>
+<!--
+        <nuxt-link :to="localePath(`/specs/${productInfo.productModel}`)">{{ $t('productSpecs.DetailedParameters') }} ></nuxt-link>
+-->
+        <div class="link-container">
+          <div class="link-item">
+              <div class="icon-space">
+                <img src="https://file.kwunphi.com/kwunphi4/images/svg/Pdf%20(2).svg">
+              </div>
+              <a :href="$t(productSpecsInfo.downloadProductSpecsUrl)" target="_blank">{{ $t('productSpecs.ProductSpecificationsDownload') }}</a>
+            </div>
+          <div v-for="(link, linkIndex) in productSpecsInfo.link" class="link-item">
+              <div class="icon-space">
+                <img :src="link.icon">
+              </div>
+              <a :href="$t(link.downLoadUrl)" target="_blank">{{ $t(link.name) }}</a>
+            </div>
+        </div>
+
+
+        <nuxt-link style="font-size: 20px;margin-top: 6px" :to="localePath(`/comparison`)">{{ $t('foot.productComparison') }} ></nuxt-link>
+
+
+
+        <a v-if="productInfo.productSpecifications.accessories.length > 0">{{ $t('productSpecs.PackingListComparison') }}</a>
         <div v-for="(item, index) in productInfo.productSpecifications.equipmentPackage"
           :class="item.isSelected ? 'parameter-card-Selected' : 'parameter-card'"
           @click="changSelected(index); changBannerImg(item)">
@@ -36,7 +57,7 @@
           <div class="split-line1"></div>
           <h2>￥{{ item.content }}</h2>
         </div>
-        <h1 v-if="productInfo.productSpecifications.accessories.length > 0">{{ $t('productSpecs.HotSellingAccessories') }}</h1>
+        <h1 v-if="productInfo.productSpecifications.accessories.length > 0" style="margin-top: 16px">{{ $t('productSpecs.HotSellingAccessories') }}</h1>
         <div v-for="(item, index) in productInfo.productSpecifications.accessories"
           :class="item.isSelected ? 'parameter-card-Selected' : 'parameter-card'" @click="changSelected1(index)">
           <div class="accessories-container">
@@ -54,14 +75,39 @@
         </div>
       </div>
     </div>
-    <!-- <div class="split-line3"></div> -->
-    <!-- <packing-list :list="list2"></packing-list> -->
-    <!-- <tips></tips> -->
-<!--    <total-calculation :price="totalPurchasePrice"></total-calculation>-->
+
+
+
+<!--产品规格参数-->
+    <div class="specs-container">
+      <div class="specs-title">
+        <h1>{{ $t('productSpecs.Specifications') }}</h1>
+      </div>
+      <div class="split-line"></div>
+      <div v-for="(item,index) in  productDetailSpecs.specs" class="specs-item container" >
+        <div class="spacs-item-title">
+          <h1>{{$t(item.title)}}</h1>
+        </div>
+        <div class="specs-content">
+          <div v-for="(specs,index) in item.parameters" class="specs-item">
+            <p v-if="specs.name&&!specs.value" >{{$t(specs.name)}}</p>
+            <p v-if="!specs.name&&specs.value" >{{$t(specs.value)}}</p>
+            <p v-if="specs.name&&specs.value" >{{$t(specs.name)}}:{{$t(specs.value)}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="interpretation">
+      <p>*{{ $t('productSpecs.specsDataInterpretation.lifeAndEndurance') }}</p>
+      <p>*{{ $t('productSpecs.specsDataInterpretation.shape') }}</p>
+      <p>*{{ $t('productSpecs.specsDataInterpretation.standardParameters') }}</p>
+      <p>{{ $t('productSpecs.specsDataInterpretation.FinalInterpretation') }}</p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, toRefs, onMounted, getCurrentInstance,onUnmounted ,watch,onBeforeMount} from "vue";
 import allProduct from "assets/js/product/product-info";
 const router = useRouter()
 const route = useRoute()
@@ -87,6 +133,7 @@ function changBannerImg(item) {
   const newImgList = [...productImgList.value];
   imgInfo.value = { swiperImg: item.imgUrl, dotImg: item.dotImgUrl }
   newImgList[1] = imgInfo.value;
+  // @ts-ignore
   productImgList.value = newImgList;
 }
 
@@ -164,6 +211,22 @@ function changSelected1(index) {
   getTotalPrice1();
 }
 
+
+
+import productMap from "assets/js/product/product-list"
+import allProductSpecs from "assets/js/product/product-specs";
+const productModel = ref(route.params.model)
+const productSpecsInfo = ref(productMap.get(route.params.model))
+
+
+const productDetailSpecs = ref(allProductSpecs.productSpecsMap.get(route.params.model));
+
+
+
+
+
+
+
 onBeforeMount(() => {
   const productModel = route.params.model
   let price = productInfo.value?.price
@@ -181,6 +244,7 @@ onBeforeMount(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 0 48px 0;
 }
 
 .split-line {
@@ -192,15 +256,14 @@ onBeforeMount(() => {
 .split-line3 {
   margin-top: 32px;
   width: calc(100% - 16px);
-  max-width: 1200px;
+  max-width: 1500px;
   height: 1px;
   background-color: #b9bfc4;
 }
 
 .product-detail-container {
   transition: 0.3s ease;
-  margin-top: 32px;
-  width: 1200px;
+  width: 1500px;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -213,7 +276,8 @@ onBeforeMount(() => {
   top: 70px;
   /* 确保固定在顶部 */
   position: sticky;
-  width: calc(50% - 8px);
+  height: auto;
+  width: calc(57% - 8px);
   display: flex;
   flex-direction: column;
 }
@@ -222,7 +286,7 @@ onBeforeMount(() => {
   overflow: hidden;
   transition: 0.3s ease;
   width: 100%;
-  height: 666px;
+  height: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,25 +337,27 @@ onBeforeMount(() => {
 }
 
 .specs-detail-container {
-  margin-top: 72px;
+  padding-top: 5%;
   transition: 0.3s ease;
-  width: calc(50% - 8px);
+  width: calc(43% - 8px);
   display: flex;
   flex-direction: column;
+  /*align-items: flex-start;*/
+  /*justify-content: center;*/
 }
 
 .specs-detail-container>h1 {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.89);
 }
 
 .specs-detail-container>h3 {
   margin-top: 20px;
   margin-bottom: 10px;
   font-weight: 700;
-  font-size: 15px;
-  color: rgba(0, 0, 0, 0.6);
+  font-size: 24px;
+  color: #ce5204;
 }
 
 .specs-detail-container>ul {
@@ -299,20 +365,22 @@ onBeforeMount(() => {
   /* 移除默认的列表样式 */
   padding-left: 0;
   /* 移除默认的列表缩进 */
-  color: rgba(128, 128, 128, 0.8);
   margin-left: 20px;
 }
 
 .specs-detail-container>ul>li {
-  margin-top: 10px;
-  font-size: 15px;
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(68, 68, 68, 0.9);
 }
 
 .specs-detail-container>a {
-  color: rgba(2, 126, 255);
-  margin-top: 10px;
+  color: rgba(2, 120, 255);
+  margin-top: 24px;
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 34px;
+  font-weight: 700;
 }
 
 .specs-detail-container>h2 {
@@ -424,6 +492,130 @@ onBeforeMount(() => {
   margin-top: 5px;
 }
 
+
+.download-link-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-container {
+  margin-top: 16px;
+  /* width: 100%; */
+  /* max-width: 200px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-item {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.icon-space {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-space>img {
+  object-fit: cover;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.link-item>a {
+  font-size: 18px;
+  color: rgba(66, 66, 66, 0.85);
+}
+
+
+.specs-container{
+  width: 1500px;
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+}
+.specs-title{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.specs-title >h1{
+  margin: 48px 0 24px 0;
+  color: rgba(0,0,0,0.85);
+  font-size: 34px;
+  font-weight: 700;
+}
+.split-line{
+  width: 100%;
+  height: 1px;
+  background-color: #A7A7A7;
+}
+.specs-item{
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+.container{
+  border-bottom: 1px solid rgba(0,0,0,0.452);
+}
+.spacs-item-title{
+  padding-top: 20px;
+  padding-left: 10px;
+  display: flex;
+  width: calc(25%);
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.spacs-item-title >h1{
+  font-size: 16px;
+  font-weight: 700;
+}
+.specs-content{
+  padding: 16px 0;
+  width: calc(75%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.specs-item{
+  margin-bottom: 3px;
+}
+.specs-item >p{
+  font-weight: 300;
+  font-size: 16px;
+}
+.interpretation{
+  width: 1500px;
+  padding: 10px 0;
+}
+.interpretation >p{
+  font-size: 14px;
+  font-weight: 300;
+}
+
 @media screen and (max-width: 1260px) {
   .product-detail-container {
     width: calc(100% - 64px);
@@ -455,6 +647,14 @@ onBeforeMount(() => {
     padding: 0 16px;
     height: 32px;
   }
+
+
+  .specs-container{
+    width: calc(100% - 64px);
+  }
+  .interpretation{
+    width: calc(100% - 64px);
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -469,6 +669,24 @@ onBeforeMount(() => {
 
   .specs-detail-container {
     min-width: 480px;
+  }
+
+
+  .specs-container{
+    width: calc(100% - 32px);
+  }
+  .interpretation{
+    width: calc(100% - 32px);
+  }
+  .specs-title >h1{
+    font-size: 36px;
+  }
+  .spacs-item-title >h1{
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .specs-item >p{
+    font-size: 14px;
   }
 
 }
@@ -499,4 +717,10 @@ onBeforeMount(() => {
     height: 32px;
   }
 
-}</style>
+}
+
+
+
+
+
+</style>

@@ -21,12 +21,16 @@
         </div>
       </div>
     </div>
+
+
     <div class="interpretation">
       <p>*{{ $t('productSpecs.specsDataInterpretation.lifeAndEndurance') }}</p>
       <p>*{{ $t('productSpecs.specsDataInterpretation.shape') }}</p>
       <p>*{{ $t('productSpecs.specsDataInterpretation.standardParameters') }}</p>
       <p>{{ $t('productSpecs.specsDataInterpretation.FinalInterpretation') }}</p>
     </div>
+
+
   </div>
 </template>
 
@@ -47,10 +51,13 @@ const picList = ref([
   {imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/33/bg-white/04.png"},
   {imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/33/bg-white/05.png"},
   {imgUrl:"https://file.kwunphi.com/kwunphi4/images/kwun/33/bg-white/06.png"},
-
 ])
 
 const productSpecs = ref(allProductSpecs.productSpecsMap.get(route.params.model));
+
+
+
+
 
 const customHeaderInfo = ref({
   logoInfo:{

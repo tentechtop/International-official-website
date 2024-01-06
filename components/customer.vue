@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a v-if="!isShowChatWindows" class="root-page"
-         @click="isMouseOver=!isMouseOver">
+    <a  class="root-page"
+         @click="isOpenChatWindows=!isOpenChatWindows">
 <!--      :href="getRandomChatCustomer()" target="_blank"-->
       <img src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189">
       <div class="point"></div>
@@ -9,7 +9,7 @@
 
 
     <transition name="fade">
-    <div v-if="isMouseOver" class="chat-windows">
+    <div v-if="isOpenChatWindows" class="chat-windows">
       <div class="chat-header-container">
         <div class="wx-chat-container">
           <img src="https://file.kwunphi.com/kwunphi4/images/svg/%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95.svg">
@@ -22,11 +22,11 @@
           </div>
           <p>怪虫机器人</p>
           <h1>Kwunphi</h1>
-          <div class="send-email-container">
+          <div class="send-email-container" @click="messageList=[]">
             <div class="hot-point" v-for="(pItem,PIndex) in 3"></div>
           </div>
         </div>
-        <div class="close-button" @click="isMouseOver=false">
+        <div class="close-button" @click="isOpenChatWindows=false">
           <img src="https://file.kwunphi.com/kwunphi4/images/svg/%E5%85%B3%E9%97%AD.svg">
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div v-if="isOpenEmo" class="emotion-container">
         <div class="emo-box">
 
-          <div class="emo-item" v-for="(eItem,eIndex) in emoList" @click="isOpenEmo=false">
+          <div class="emo-item" v-for="(eItem,eIndex) in emoList" @click="goToSendEmo(eItem)">
             <kw-image class="emo-item-img" :src="eItem.imgUrl"></kw-image>
           </div>
 
@@ -47,8 +47,19 @@
       </transition>
 
 
-      <div class="message-list-container">
-
+      <div class="message-list-container" ref="chatListDom" @scroll="handleScroll">
+        <div class="message-item" v-for="(message,messageIdx) in filteredList" :class="message.role==='user'? 'userMessage':'assistantMessage'">
+          <img v-if="message.role!=='user'" src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189">
+          <div class="chat-message">
+            <div class="role-container">
+              <h1>{{ message.role }}</h1>
+            </div>
+            <div class="message-container">
+              <p class="res-message" :class="{userMessageRes:message.role==='user'}"  v-html="markedRender(message.content.replace(/^\n\n/, ''))"></p>
+            </div>
+          </div>
+          <img v-if="message.role==='user'" src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189">
+        </div>
       </div>
 
       <div class="message-input-container">
@@ -64,9 +75,8 @@
           />
 
 
-          <div v-if="getAvailableButton" class="send-button">
-
-
+          <div  class="send-button" :class="{'available_Button':isCanSendMessages}" @click="sendOrSave">
+            <img :src=" isTalking? 'https://file.kwunphi.com/kwunphi4/images/svg/24gf-square.svg':'https://file.kwunphi.com/kwunphi4/images/svg/%E5%8F%91%E9%80%81.svg'">
           </div>
 
 
@@ -121,107 +131,8 @@ import Loding from "@/components/Loding.vue";
 import Copy from "@/components/Copy.vue";
 import keywordsList from "assets/js/keywordsChat/keywordsList";
 import keywordsArray from "assets/js/keywordsChat/keywordsArray";
-import { md } from "assets/libs/markdown";
-/*let apiKey = "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";*/
-
-
-
-const emoList = ref([
-  {
-    name:"微笑",
-    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg",
-    text:"😊",
-    markdown:"![微笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
-  },
-  {
-    name:"大笑",
-    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%A4%A7%E7%AC%91.svg",
-    text:"😁",
-    markdown:"![大笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
-  },
-  {
-    name:"微笑",
-    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg",
-    text:"😊",
-    markdown:"![微笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
-  },
-  {
-    name:"大笑",
-    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%A4%A7%E7%AC%91.svg",
-    text:"😁",
-    markdown:"![大笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
-  },
-
-])
-
-
-
-
-
-
-
-
-const isOpenEmo = ref(false)
-
-// 创建一个ref来持有文件输入元素的引用
-const fileInput = ref<HTMLInputElement | null>(null);
-
-// 文件选择事件处理函数
-const onFileChange = () => {
-  if (fileInput.value) {
-    // @ts-ignore
-    const selectedFile = fileInput.value.files?.[0];
-    if (selectedFile) {
-
-    }
-  }
-};
-
-
-// 模拟点击文件输入事件
-const uploadFile = () => {
-  if (fileInput.value) {
-    // @ts-ignore
-    fileInput.value.click();
-  }
-};
-
-
-function gotoTargetPage(){
-  router.push({ path: localePath('/leave-message') })
-}
-
-let apiKey = "sk-VcsMNS2JQziQbWaFdmRvHBVqzIH0Ph6QNLN5a1X8QdaemMQ7";
-let isConfig = ref(true);
-let isTalking = ref(false);
-const isMouseOver = ref(false)
-let messageContent = ref("");
-const isShowChatWindows = ref(false)
-
-
-
-
-//上滑取消
-watch(messageContent,(newValue)=>{
-  if (messageContent.value.trim()!==''){
-
-
-  }
-
-})
-function isStringAllSpaces(inputString) {
-  // 使用trim()方法去掉字符串两端的空格，然后检查结果是否为空字符串
-  return inputString.trim() === '';
-}
-
-
-
-
-
-const decoder = new TextDecoder("utf-8");
-const roleAlias = { user: "ME", assistant: "ChatGPT", system: "System" };
-
-let keywords = keywordsArray.keywordsArrayList; // 添加你的关键词
+import {fetchEventSource} from '@microsoft/fetch-event-source';
+import { markedRender } from '../assets/libs/highlight'
 const messageList = ref<ChatMessage[]>([
   {
     role: "system",
@@ -235,7 +146,7 @@ const messageList = ref<ChatMessage[]>([
         "公司的领导人是陈应洪，怪虫机器人总公司的地址在广东省深圳市龙岗区坂田街道深澳文化产业园22栋，合肥怪虫机器人的地址是安徽省合肥市经济技术开发区宿松路南艳湖创新中心1栋422室，" +
         "公司的联系电话是4008786861，怪虫机器人是一家年轻且具有极强创造力的公司，成立于2018是由机器视觉与自动驾驶专家团队创建的国家高新技术企业。" +
         "怪虫每三个员工就有一个机器视觉或自动驾驶工程师。从最初的幕墙移动控制技术，到光伏应用自主机器人、堒洁团队专业管理系统，再到行业应用怪虫工程师不忘初心收获一个个划时代产品，" +
-        "展现了大无畏的“怪虫拼搏”气概。,最后请给你回复的每一个句话的结尾都加上笑脸😊比如您好，请问有什么可以帮您呢？😊" +
+        "展现了大无畏的“怪虫拼搏”气概。" +
         "Kwun-B37H 关键参数如下：清洁效率: ≥650平方米/小时,续航: 3小时,充电: 3小时,水洗角度: ≤15°,干刷角度: ≤20°,机身尺寸: 585*560*250mm" +
         "机身重量(不含滚刷): 23.85公斤," +
         "角度: 干刷 0～20°/水洗 0～15°" +
@@ -279,28 +190,82 @@ const messageList = ref<ChatMessage[]>([
         "无缝安全认证: 必维隐裂认证" +
         "" ,/*调教 将chatGPT带入角色*/
   },
-
   {
     role: "assistant",
     content: t('customer.welcome'),
   },
 ]);
 
+const emoList = ref([
+  {
+    name:"微笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg",
+    text:"😊",
+    markdown:"![微笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+  {
+    name:"大笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%A4%A7%E7%AC%91.svg",
+    text:"😁",
+    markdown:"![大笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+  {
+    name:"微笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg",
+    text:"😊",
+    markdown:"![微笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+  {
+    name:"大笑",
+    imgUrl:"https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%A4%A7%E7%AC%91.svg",
+    text:"😁",
+    markdown:"![大笑](https://file.kwunphi.com/kwunphi4/images/svg/emo/%E5%BE%AE%E7%AC%91.svg)\n"
+  },
+
+])
+const isOpenEmo = ref(false)
+
+
+function goToSendEmo(eItem){
+  messageContent.value += eItem.markdown
+  isOpenEmo.value=false
+}
+
+
+let apiKey = "sk-VcsMNS2JQziQbWaFdmRvHBVqzIH0Ph6QNLN5a1X8QdaemMQ7";
+let isConfig = ref(true);
+let isTalking = ref(false);
+const isOpenChatWindows = ref(false)
+let messageContent = ref("");
+
+
+
+
+
+
+
+
+const decoder = new TextDecoder("utf-8");
+const roleAlias = { user: "ME", assistant: "ChatGPT", system: "System" };
+
+let keywords = keywordsArray.keywordsArrayList; // 添加你的关键词
+
+
+
+
 
 // 创建一个计算属性 filterList
 const filteredList = computed(() => {
   return messageList.value.filter((v, index) => {
-    return   v.role !== 'system';
+    return   v.role !== '1';//system
   });
 });
 
 
-watch(locale,(newValue)=>{
-  messageList.value[1].content = t('customer.welcome')
-})
 
 
-const chatListDom = ref(null);
+
+
 
 const chatCustomerList = ref([
     "https://work.weixin.qq.com/kfid/kfcbc3ea8617440b578",
@@ -312,34 +277,42 @@ function getRandomChatCustomer() {
   return chatCustomerList.value[randomIndex];
 }
 
-// 调用这个函数来获取一个随机的元素
 
-//当用户上滑时取消 监听
 
-const scrollToBottom = () => {
-  if (!chatListDom.value) return;
 
-  if (chatListDom.value) {
+const chatListDom = ref(null);
+const isUserScrollsUp = ref(false)
+
+const sendOrSave = () => {
+  if (isStringAllSpaces(messageContent.value) ||messageContent.value.length===0 || isTalking.value===true ){
+    messageContent.value ='';
+    return;
+  }
+  isUserScrollsUp.value=false
+  if (isConfig.value) {
+    if (saveAPIKey(messageContent.value.trim())) {
+      switchConfigStatus();
+    }
+    clearMessageContent();
+  } else {
+    const content = messageContent.value.trim()
     // @ts-ignore
-    chatListDom.value.scrollTop = chatListDom.value.scrollHeight;
+    let index = isKeywordHit(content, keywords)
+    if (index !== -1) {
+      // 如果包含关键词
+      keywordsChat(index);
+    } else {
+      sendChatMessage();
+    }
   }
 };
 
-watch(messageList.value, () => nextTick(() => scrollToBottom()));
-
-
-onMounted(() => {
-  if (getAPIKey()) {
-    switchConfigStatus();
-  }
-});
-
 const appendLastMessageContent = (content: string) =>
     (messageList.value[messageList.value.length - 1].content += content);
+
+
 const sendChatMessage = async (content: string = messageContent.value) => {
-  let question = content
   try {
-    isTalking.value = true;
     if (messageList.value.length === 2) {
       messageList.value.pop();
     }
@@ -347,19 +320,53 @@ const sendChatMessage = async (content: string = messageContent.value) => {
     clearMessageContent();
     messageList.value.push({ role: "assistant", content: "" });
 
-    const { body, status } = await chat(messageList.value, getAPIKey());
-    if (body) {
-      const reader = body.getReader();
-      await readStream(reader, status).then(()=>{
-        sendChatContentToMysql(question,messageList.value[messageList.value.length-1].content)
-      });
-    }
+    const controller = new AbortController()
+    const signal = controller.signal
+    fetchEventSource('https://api.chatanywhere.com.cn/v1/chat/completions', {
+      method: 'POST',
+      signal:signal,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        stream: true,
+        messages: messageList.value,
+      }),
+      onmessage(event) {
+        if (event.data !=='[DONE]'){
+          const message = JSON.parse(event.data);
+          appendLastMessageContent(message.choices[0].delta.content || '');
+          isTalking.value=true
+        }else {
+          isTalking.value = false;
+ /*         console.log("回复完成")*/
+          controller.abort()
+        }
+      },
+      onclose(){
+/*        console.log("回复完成并,关闭")*/
+        isTalking.value = false;
+        controller.abort()
+      },
+      onerror(err){
+/*        console.log('发生错误:', err);*/
+        isTalking.value = false;
+        appendLastMessageContent("CONNECT ERROR");
+        throw err
+      }
+    })
   } catch (error: any) {
     appendLastMessageContent(error);
   } finally {
     isTalking.value = false;
   }
 };
+
+
+
+
 const readStream = async (
     reader: ReadableStreamDefaultReader<Uint8Array>,
     status: number
@@ -401,37 +408,9 @@ const readStream = async (
 };
 
 
-function getAvailableButton(){
-  if (isStringAllSpaces(messageContent.value) ||messageContent.value.length===0 || isTalking===true ){
-    messageContent.value ='';
-    return false;
-  }else {
-    return true
-  }
-}
 
-const sendOrSave = () => {
-  if (isStringAllSpaces(messageContent.value) ||messageContent.value.length===0 || isTalking===true ){
-    messageContent.value ='';
-    return;
-  }
-  if (isConfig.value) {
-    if (saveAPIKey(messageContent.value.trim())) {
-      switchConfigStatus();
-    }
-    clearMessageContent();
-  } else {
-    const content = messageContent.value.trim()
-    // @ts-ignore
-    let index = isKeywordHit(content, keywords)
-    if (index !== -1) {
-      // 如果包含关键词
-      keywordsChat(index);
-    } else {
-      sendChatMessage();
-    }
-  }
-};
+
+
 
 
 //余弦相似度 处理英文
@@ -497,7 +476,7 @@ function similarity(str1, str2) {
   const similarity = (1.0 - editDistanceValue / maxLen);
   return similarity;
 }
-const similarThreshold = 0.65; // 设置相似度阈值
+const similarThreshold = 0.75; // 设置相似度阈值
 function isKeywordHit(content) {
   let keywordsArray = keywords;
   const matchingIndices = [];
@@ -526,6 +505,8 @@ function isKeywordHit(content) {
   }
 }
 
+
+
 function keywordsChat(index){
   let content = ""
   content = messageContent.value
@@ -544,14 +525,14 @@ function keywordsChat(index){
   const messageChunks = message.split(""); // 拆分消息成字符数组
   let currentIndex = 0;
 
-  sendChatContentToMysql(content,message)
   /*流式输出*/
   const addMessage = () => {
     if (currentIndex < messageChunks.length) {
       messageList.value[messageList.value.length-1].content += messageChunks[currentIndex];
       currentIndex++;
       if (currentIndex < messageChunks.length) {
-        setTimeout(addMessage, 5); // 每隔1秒添加下一个字符
+        setTimeout(addMessage, 20); // 每隔1秒添加下一个字符
+        isTalking.value = true;
       } else {
         isTalking.value = false;
       }
@@ -561,35 +542,9 @@ function keywordsChat(index){
   addMessage();
 }
 
-async function sendChatContentToMysql(content,message){
-  let thisCookie =document.cookie
-  let parseCookies1 = parseCookies(thisCookie);
 
 
 
-/*  const resp = await useFetch('http://localhost:9090/official/chat/save/qa',{
-    method:"POST",
-    body: {
-      question:content,
-      answer:message
-    },
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Accept-Language':`${parseCookies1["language"]}`,
-      'Cookie-Uuid':`${parseCookies1["cookie-uuid"]}`,
-    }
-  })*/
-}
-
-function parseCookies(cookieString) {
-  let cookies = {};
-  cookieString.split(';').forEach(function(cookie) {
-    let parts = cookie.split('=');
-    let name = decodeURIComponent(parts[0].trim());
-    cookies[name] = decodeURIComponent(parts[1]);
-  });
-  return cookies;
-}
 
 
 const saveAPIKey = (apiKey: string) => {
@@ -601,6 +556,8 @@ const saveAPIKey = (apiKey: string) => {
   localStorage.setItem("apiKey", aesAPIKey);
   return true;
 };
+
+
 const getAPIKey = () => {
   if (apiKey) return apiKey;
   const aesAPIKey = localStorage.getItem("apiKey") ?? "";
@@ -609,10 +566,99 @@ const getAPIKey = () => {
   );
   return apiKey;
 };
+
+
+
+
 const getSecretKey = () => "lianginx";
 const switchConfigStatus = () => (isConfig.value = !isConfig.value);
 const clearMessageContent = () => (messageContent.value = "");
 
+
+
+// 创建一个ref来持有文件输入元素的引用
+const fileInput = ref<HTMLInputElement | null>(null);
+
+// 文件选择事件处理函数
+const onFileChange = () => {
+  if (fileInput.value) {
+    // @ts-ignore
+    const selectedFile = fileInput.value.files?.[0];
+    if (selectedFile) {
+
+    }
+  }
+};
+
+
+// 模拟点击文件输入事件
+const uploadFile = () => {
+  if (fileInput.value) {
+    // @ts-ignore
+    fileInput.value.click();
+  }
+};
+
+
+const isCanSendMessages = ref(false)
+
+
+//上滑取消
+watch(messageContent,(newValue)=>{
+  if (messageContent.value.trim()!=='' && isTalking.value===false){
+    isCanSendMessages.value=true
+  }else {
+    isCanSendMessages.value=false
+  }
+})
+
+
+
+
+
+
+const scrollToBottom = () => {
+    if (!chatListDom.value) return;
+    if (chatListDom.value) {
+      if (!isUserScrollsUp.value){
+        // @ts-ignore
+        chatListDom.value.scrollTop = chatListDom.value.scrollHeight;
+      }
+    }
+}
+
+
+watch(messageList.value, () => nextTick(() => scrollToBottom()));
+
+const previousScrollTop = ref(0)
+function  handleScroll(event) {
+  const scrollTop = event.target.scrollTop;
+  if (scrollTop > previousScrollTop.value) {
+ /*   console.log("向下滚动");*/
+
+  } else if (scrollTop < previousScrollTop.value) {
+/*    console.log("向上滚动");*/
+    isUserScrollsUp.value=true
+  }
+  // 更新 previousScrollTop 为当前的scrollTop值，以便下一次比较
+  previousScrollTop.value = scrollTop;
+}
+
+
+onMounted(() => {
+  if (getAPIKey()) {
+    switchConfigStatus();
+  }
+
+  // 页面增加滚动事件
+
+});
+
+
+function isStringAllSpaces(inputString) {
+  // 使用trim()方法去掉字符串两端的空格，然后检查结果是否为空字符串
+  return inputString.trim() === '';
+}
 </script>
 
 
@@ -804,6 +850,9 @@ const clearMessageContent = () => (messageContent.value = "");
   width: 100%;
   height: 486px;
   background-color: #FFFFFF;
+  padding: 5px 12px;
+  display: flex;
+  flex-direction: column;
 }
 .message-input-container{
   background-color: #FFFFFF;
@@ -818,18 +867,32 @@ const clearMessageContent = () => (messageContent.value = "");
 }
 
 .send-button{
+  z-index: 99;
+  opacity: 0.55;
+
+  cursor: pointer;
   position: absolute;
   right: 0;
   height: 33px;
   width: 33px;
   border-radius: 5px;
-  background-color: #0c7abf;
+  background: #1972F5 !important;
   bottom: calc(-100% + 58px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.send-button>img{
+  width: 17px;
 }
 
-
-
-
+.send-button:hover{
+  background: #1768e1 !important;
+}
+.available_Button{
+  opacity: 1;
+}
 .split-line{
   height: 1px;
   z-index: 3;
@@ -947,4 +1010,82 @@ const clearMessageContent = () => (messageContent.value = "");
   height: 0;
   padding-bottom: 100%;
 }
+
+.message-item{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 4px 0 8px 0;
+}
+
+.assistantMessage{
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.assistantMessage>img{
+  width: 36px;
+  height: 36px;
+  border-radius: 500px;
+}
+.chat-message{
+  max-width: 100%;
+}
+.message-container{
+  max-width: 332px;
+}
+.assistantMessage .chat-message .role-container{
+  width: 100%;
+  margin-bottom: 4px;
+}
+.assistantMessage .chat-message .role-container >h1{
+  font-size: 16px;
+  color: rgba(108,108,108);
+}
+
+.assistantMessage .chat-message .message-container{
+  border-radius: 10px;
+  padding: 5px 11px;
+  width: 100%;
+  background-color: #0d7ae1;
+}
+
+
+
+
+
+
+.userMessage{
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+
+.userMessage>img{
+  width: 36px;
+  height: 36px;
+  border-radius: 500px;
+}
+.userMessage .chat-message .role-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+.userMessage .chat-message .role-container >h1{
+  font-size: 16px;
+  color: rgba(108,108,108);
+}
+
+.userMessage .chat-message .message-container{
+  border-radius: 10px;
+  padding: 5px 11px;
+  width: 100%;
+  background-color: #F0F2F5;
+}
+
+
+
+
 </style>

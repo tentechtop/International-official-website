@@ -38,6 +38,7 @@
     "vue-router": "^4.2.0"
   },
   "devDependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
     "@pinia/nuxt": "^0.4.9",
     "@tailvue/nuxt": "^0.1.68",
     "@types/animejs": "^3.1.7",

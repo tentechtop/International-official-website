@@ -37,23 +37,34 @@ pre {
     position: relative;
     width: 100%;
     background-color: #ffffff;
-    padding: 1.5rem;
+    padding: 0;
     border: 1px solid rgb(208, 215, 222);
     border-radius: 6px;
+    overflow-x: auto;
 }
 
 code {
     width: 100%;
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
+code:after {
+    background-color: transparent;
+}
+
+/*关键字*/
 p code {
     position: relative;
     padding: 3px 4px;
     border-radius: 3px;
-    background-color: #f0f0f0 !important;
+    background-color: transparent !important;
+    color: #fff;
+    font-weight: 400;
 }
 
+
+
+/*细线*/
 p code:after {
   display: inline-block;
   position: absolute;
@@ -63,12 +74,12 @@ p code:after {
   width: 95%;
   transform: translateX(-50%);
   box-sizing: border-box;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0,0,0,0);
 }
 
 ul li code {
     position: relative;
-    padding: 3px 4px;
+    padding: 2px 3px;
     border-radius: 3px;
     background-color: transparent;
 }
@@ -85,6 +96,7 @@ ul li code:after {
 }
 
 .copyNode {
+    display: none;/*复制按钮*/
     z-index: 2;
     cursor: pointer;
     position: absolute;
@@ -105,8 +117,12 @@ ul li code:after {
     background-color: #e6e6e6;
 }
 
+/*代码样式*/
 /*code*/
 .clearfix{
+    width: 100%;
+    max-width: 332px;
+    overflow-x: auto;
     background: #FFFFFF;
     margin: 16px 0;
 }
@@ -119,7 +135,7 @@ ul li code:after {
 }
 
 .hljs{
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
 textarea::-webkit-scrollbar {
@@ -172,7 +188,7 @@ body {
     height: 41px;
 }
 
-.res-message >p{
+/*.res-message >p{
     font-size: 19px;
     line-height: 28px;
     color: #2d2d2d;
@@ -181,17 +197,67 @@ body {
 .res-message > ol{
     margin: 16px 0;
     transform: translateX(3rem);
-
 }
 
 .res-message > ol >li{
     margin: 8px 0;
-    font-size: 19px;
+    font-size: 16px;
     color: #2d2d2d;
-
 }
 
 .res-message > ol >li::marker{
     font-size: 19px;
     color: #2d2d2d;
+}*/
+
+
+.res-message{
+    width: 100%;
+}
+.res-message >p{
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.res-message > ol{
+    margin: 8px 0;
+    transform: translateX(1rem);
+}
+
+.res-message > ol >li{
+    margin: 4px 0;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.res-message > ol >li::marker{
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.userMessageRes{
+    width: 100%;
+
+}
+.userMessageRes >p{
+    font-size: 16px;
+    line-height: 24px;
+    color: #1C293B;
+}
+
+.userMessageRes > ol{
+    margin: 8px 0;
+    transform: translateX(1rem);
+}
+
+.userMessageRes > ol >li{
+    margin: 4px 0;
+    font-size: 16px;
+    color: #1C293B;
+}
+
+.userMessageRes > ol >li::marker{
+    font-size: 16px;
+    color: #1C293B;
 }

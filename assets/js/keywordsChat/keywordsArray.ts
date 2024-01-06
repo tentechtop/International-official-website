@@ -1189,6 +1189,11 @@ let keywordsItemArrayList = [
     },
     {
         keywordsId:1,
+        keywords:["你是chatGPT几","你是chatGPT4吗？","你是chatGPT4吗","你是chatGPT4？","你是chatGPT几代？","你是GPT几","你是gpt几"],
+        message:"我是基于Openai的chatGPT-4模型！请问有什么可以帮你的吗？",
+    },
+    {
+        keywordsId:1,
         keywords: ["你会唱跳rap篮球吗","你会唱跳rap吗?","唱跳rap","你会唱跳rap吗"],
         message:"您好，我是练习时长两年半的智能客服，我会唱跳rap篮球music，哎呀~~~你干嘛~~~",
     },

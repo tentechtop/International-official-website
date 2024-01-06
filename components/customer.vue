@@ -72,13 +72,11 @@
         <div class="split-line"></div>
         <div class="message-input">
           <el-input
-              clearable
-              @clear="console.log('清空')"
+              type="textarea"
               class="no-border-input"
               resize="none"
               v-model="messageContent"
               :autosize="{ minRows: 1, maxRows: 1 }"
-              type="textarea"
               placeholder=""
           />
 
@@ -665,11 +663,13 @@ function isStringAllSpaces(inputString) {
 
 <style>
 .no-border-input .el-textarea__inner {
-
   border: 0;
   box-shadow:none;
   padding: 5px 0px;
+  overflow-y: hidden;
 }
+
+
 
 
 
@@ -861,7 +861,7 @@ function isStringAllSpaces(inputString) {
   background-color: #FFFFFF;
   z-index: 3;
   width: 100%;
-  height: 94px;
+  min-height: 94px;
   padding: 0 12px;
 }
 .message-input{

@@ -239,10 +239,9 @@ onMounted(()=>{
   flex-direction: column;
 }
 
-.table-desc /deep/ p {
+.table-desc p {
   margin: 0;
 }
-
 .table-desc img {
   width: 100%;
 }
@@ -321,7 +320,7 @@ onMounted(()=>{
   flex-direction: column;
 }
 
-.table-desc /deep/ p {
+.table-desc > p {
   margin: 0;
 }
 

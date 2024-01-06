@@ -72,16 +72,19 @@
         <div class="split-line"></div>
         <div class="message-input">
           <el-input
+              @keydown.enter.prevent
+              @keydown.enter="sendOrSave"
               type="textarea"
               class="no-border-input"
               resize="none"
+              :height="33"
               v-model="messageContent"
-              :autosize="{ minRows: 1, maxRows: 1 }"
+              :autosize="{ minRows: 1, maxRows: 3 }"
               placeholder=""
           />
 
 
-          <div  class="send-button" :class="{'available_Button':isCanSendMessages}"    @click="sendOrSave">
+          <div ref="sendButton"  class="send-button" :class="{'available_Button':isCanSendMessages}"    @click="sendOrSave">
             <img :src=" isTalking? 'https://file.kwunphi.com/kwunphi4/images/svg/24gf-square.svg':'https://file.kwunphi.com/kwunphi4/images/svg/%E5%8F%91%E9%80%81.svg'">
           </div>
 
@@ -233,6 +236,16 @@ const emoList = ref([
 ])
 const isOpenEmo = ref(false)
 
+const sendButton = ref(null);
+
+function gotoSendMessage(event){
+  console.log("回车了")
+  if (sendButton.value) {
+    // @ts-ignore
+    sendButton.value.click();
+  }
+}
+
 
 function goToSendEmo(eItem){
   messageContent.value += eItem.markdown
@@ -307,6 +320,7 @@ const sendOrSave = () => {
       sendChatMessage();
     }
   }
+
 };
 
 const appendLastMessageContent = (content: string) =>
@@ -533,7 +547,7 @@ function keywordsChat(index){
       messageList.value[messageList.value.length-1].content += messageChunks[currentIndex];
       currentIndex++;
       if (currentIndex < messageChunks.length) {
-        setTimeout(addMessage, 20); // 每隔1秒添加下一个字符
+        setTimeout(addMessage, 30); // 每隔1秒添加下一个字符
         isTalking.value = true;
       } else {
         isTalking.value = false;
@@ -665,9 +679,10 @@ function isStringAllSpaces(inputString) {
 .no-border-input .el-textarea__inner {
   border: 0;
   box-shadow:none;
-  padding: 5px 0px;
-  overflow-y: hidden;
+  padding: 3.85px 0px;
 }
+
+
 
 
 
@@ -867,6 +882,10 @@ function isStringAllSpaces(inputString) {
 .message-input{
   padding: 7px 0;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 .no-border-input{
   width: calc(100% - 33px);
@@ -875,15 +894,11 @@ function isStringAllSpaces(inputString) {
 .send-button{
   z-index: 99;
   opacity: 0.55;
-
   cursor: pointer;
-  position: absolute;
-  right: 0;
   height: 33px;
   width: 33px;
   border-radius: 5px;
   background: #1972F5 !important;
-  bottom: calc(-100% + 58px);
   display: flex;
   flex-direction: column;
   align-items: center;

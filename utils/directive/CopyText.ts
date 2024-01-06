@@ -17,13 +17,13 @@ export default {
         });
 
         el.addEventListener('mouseleave', () => {
-            const copyButton = el.querySelector('button');
-            if (copyButton) {
-                // 延迟5秒后移除已复制的类
-                setTimeout(function() {
+            setTimeout(function() {
+                const copyButton = el.querySelector('button');
+                if (copyButton) {
+                    // 延迟3秒后移除已复制的类
                     el.removeChild(copyButton);
-                }, 3000); // 3000毫秒（即3秒）
-            }
+                }
+            }, 3000); // 3000毫秒（即3秒）
         });
     },
 };

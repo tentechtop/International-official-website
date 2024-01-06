@@ -2,6 +2,7 @@
   <div>
     <nav-menu></nav-menu>
     <nuxt-page></nuxt-page>
+    <feedback-and-suggestions></feedback-and-suggestions>
     <customer></customer>
     <foot-menu></foot-menu>
   </div>
@@ -12,9 +13,10 @@
 import {defineComponent} from "vue";
 import NavMenu from "~/components/bar/nav-menu.vue";
 import FootMenu from "~/components/bar/foot-menu.vue";
+import FeedbackAndSuggestions from "~/components/FeedbackAndSuggestions.vue";
 
 export default defineComponent({
-  components: {FootMenu, NavMenu}
+  components: {FeedbackAndSuggestions, FootMenu, NavMenu}
 })
 </script>
 

@@ -103,7 +103,9 @@
               <img   src="https://file.kwunphi.com/kwunphi4/images/svg/%E5%9B%9E%E5%BD%A2%E9%92%88.svg">
             </div>
 
-
+            <div class="file-container"  >
+              <img style="opacity: 1"  src="https://file.kwunphi.com/kwunphi4/images/svg/%E8%AF%9D%E7%AD%92.svg">
+            </div>
 
 
 
@@ -964,7 +966,7 @@ function isStringAllSpaces(inputString) {
 }
 .emo-container>img{
   width: 100%;
-  opacity: 0.50;
+  opacity: 0.6;
 }
 .file-container{
   margin-right: 6px;
@@ -975,7 +977,7 @@ function isStringAllSpaces(inputString) {
 }
 .file-container>img{
   width: 100%;
-  opacity: 0.60;
+  opacity: 0.70;
 }
 .emotion-container{
   z-index: 99;

@@ -528,8 +528,6 @@ const scroll = () => {
 onMounted(() => {
   // 页面增加滚动事件
   window.addEventListener("scroll", scroll);
-
-
 });
 </script>
 

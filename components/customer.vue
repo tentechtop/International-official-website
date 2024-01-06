@@ -661,6 +661,7 @@ function isStringAllSpaces(inputString) {
 
 <style>
 .no-border-input .el-textarea__inner {
+
   border: 0;
   box-shadow:none;
   padding: 5px 0px;
@@ -841,6 +842,7 @@ function isStringAllSpaces(inputString) {
 }
 
 .message-list-container{
+  transition: height 0.3s ease;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 3;
@@ -861,6 +863,9 @@ function isStringAllSpaces(inputString) {
 .message-input{
   padding: 7px 0;
   position: relative;
+}
+.no-border-input{
+  width: calc(100% - 33px);
 }
 
 .send-button{

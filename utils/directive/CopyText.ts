@@ -19,7 +19,10 @@ export default {
         el.addEventListener('mouseleave', () => {
             const copyButton = el.querySelector('button');
             if (copyButton) {
-                el.removeChild(copyButton);
+                // 延迟5秒后移除已复制的类
+                setTimeout(function() {
+                    el.removeChild(copyButton);
+                }, 3000); // 3000毫秒（即3秒）
             }
         });
     },

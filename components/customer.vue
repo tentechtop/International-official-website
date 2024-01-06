@@ -22,7 +22,7 @@
           </div>
           <p>怪虫机器人</p>
           <h1>Kwunphi</h1>
-          <div class="send-email-container" @click="messageList=[]">
+          <div class="send-email-container" @click="messageList=messageList.splice(0,1)">
             <div class="hot-point" v-for="(pItem,PIndex) in 3"></div>
           </div>
         </div>
@@ -66,6 +66,8 @@
         <div class="split-line"></div>
         <div class="message-input">
           <el-input
+              clearable
+              @clear="console.log('清空')"
               class="no-border-input"
               resize="none"
               v-model="messageContent"
@@ -75,7 +77,7 @@
           />
 
 
-          <div  class="send-button" :class="{'available_Button':isCanSendMessages}" @click="sendOrSave">
+          <div  class="send-button" :class="{'available_Button':isCanSendMessages}"    @click="sendOrSave">
             <img :src=" isTalking? 'https://file.kwunphi.com/kwunphi4/images/svg/24gf-square.svg':'https://file.kwunphi.com/kwunphi4/images/svg/%E5%8F%91%E9%80%81.svg'">
           </div>
 
@@ -136,13 +138,13 @@ import { markedRender } from '../assets/libs/highlight'
 const messageList = ref<ChatMessage[]>([
   {
     role: "system",
-    content: "你是Kwunphi怪虫机器人公司的智能客服 名字是堒宝宝 英文名字是Kwun Baby 是公司的员工不要用他们这的词，用我们，或者我们公司，" +
+    content: "你是Kwunphi怪虫机器人公司的智能客服,名字是堒宝宝,不要用他们,用我们,或者我们公司." +
         "你职责是：" +
-        "1.提供产品信息和支持：回答客户关于公司产品的问题，提供详细的产品信息和技术支持。这可能包括产品功能、规格、价格、可用性等方面的咨询。" +
-        "2.解决问题和投诉：协助客户解决产品使用中遇到的问题，处理客户的投诉和问题，确保客户满意。" +
+        "1.提供产品信息：回答客户关于产品的问题，提供产品信息。包括产品功能、规格、价格、可用性等咨询。" +
+        "2.解决问题和投诉：解决产品使用中遇到的问题，处理客户的投诉和问题，确保客户满意。" +
         "3.提供培训和指导：为客户提供关于产品的培训和指导，以确保他们能够有效地使用产品。" +
         "4.技术支持：为客户提供技术支持，协助解决与产品相关的技术问题。这可能包括与工程团队合作解决更复杂的技术问题。" +
-        "公司的产品是太阳能光伏板清洁机器人，产品的型号主要有Kwun-B33H、Kwun-B32H、Kwun-B32L、Kwun-B22H、Kwun-B22L、Kwun-B11L" +
+        "公司产品是太阳能光伏板清洁机器人，产品的型号主要有Kwun-B33H、Kwun-B32H、Kwun-B32L、Kwun-B22H、Kwun-B22L、Kwun-B11L" +
         "公司的领导人是陈应洪，怪虫机器人总公司的地址在广东省深圳市龙岗区坂田街道深澳文化产业园22栋，合肥怪虫机器人的地址是安徽省合肥市经济技术开发区宿松路南艳湖创新中心1栋422室，" +
         "公司的联系电话是4008786861，怪虫机器人是一家年轻且具有极强创造力的公司，成立于2018是由机器视觉与自动驾驶专家团队创建的国家高新技术企业。" +
         "怪虫每三个员工就有一个机器视觉或自动驾驶工程师。从最初的幕墙移动控制技术，到光伏应用自主机器人、堒洁团队专业管理系统，再到行业应用怪虫工程师不忘初心收获一个个划时代产品，" +
@@ -188,7 +190,7 @@ const messageList = ref<ChatMessage[]>([
         "防滑: 专用履带+高精度纠偏算法" +
         "防盗定位终端: ≤10米 中国境内" +
         "无缝安全认证: 必维隐裂认证" +
-        "" ,/*调教 将chatGPT带入角色*/
+        "最后你的回答要控制字数,必要太冗余。" ,/*调教 将chatGPT带入角色*/
   },
   {
     role: "assistant",
@@ -257,7 +259,7 @@ let keywords = keywordsArray.keywordsArrayList; // 添加你的关键词
 // 创建一个计算属性 filterList
 const filteredList = computed(() => {
   return messageList.value.filter((v, index) => {
-    return   v.role !== '1';//system
+    return   v.role !== 'system';//system
   });
 });
 

@@ -54,9 +54,15 @@
             <div class="role-container">
               <h1>{{ roleMap.get(message.role)  }}</h1>
             </div>
-            <div class="message-container" v-copyText>
+            <!--     用户消息       -->
+            <div v-if="message.role==='user'" class="message-container" v-copyText>
               <p class="res-message" :class="{userMessageRes:message.role==='user'}"  v-html="markedRender(message.content.replace(/^\n\n/, ''))"></p>
             </div>
+            <!--     chat消息       -->
+            <div v-else class="message-container" v-copyText>
+              <p class="res-message" :class="{userMessageRes:message.role==='user'}"  v-html="markedRender(message.content.replace(/^\n\n/, ''))"></p>
+            </div>
+
           </div>
           <img v-if="message.role==='user'" src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189">
         </div>
@@ -260,10 +266,6 @@ const filteredList = computed(() => {
     return   v.role !== 'system';//system
   });
 });
-
-
-
-
 
 
 

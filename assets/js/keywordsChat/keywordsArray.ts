@@ -3006,7 +3006,6 @@ otherItem.forEach((otherItem,index)=>{
 
 keywordsItemArrayList.forEach((key,index)=>{
     key.keywordsId=index
-    key.message+="😊"
     keywordsMap.set(key.keywordsId,key)
     keywordsArrayList.push(key.keywords)
 })

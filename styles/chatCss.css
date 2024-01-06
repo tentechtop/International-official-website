@@ -244,7 +244,7 @@ body {
 }
 .res-message >p >a{
     color: #FFFFFF;
-
+    word-break: break-all;/*超宽换行*/
 }
 
 .userMessageRes{
@@ -336,4 +336,17 @@ body {
     background-size: cover; /* 根据需要调整背景图片的大小 */
 }
 
+
+
+.AnswerNotSatisfactory{
+    cursor: pointer;
+    position: absolute;
+    bottom: -23px;
+    left: 0;
+    height: 23px;
+    width: calc(100% - 23px);
+    background-color: #F3f3f3;
+    border: none;
+    border-radius: 5px;
+}
 

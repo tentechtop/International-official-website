@@ -2696,11 +2696,7 @@ const lang =
 			"pleasureServe":"很高兴很为您服务",
 			"pleaseEnterQuestion":"很高兴很为您服务,请输入您的问题",
 			"send":"发送",
-			"welcome":"您好，我是Kwunphi怪虫机器人公司的智能客服，我可以提供一些常用服务和信息。\n" +
-				"热门问题：\n" +
-				"1. 公司电话.\n" +
-				"2. 公司地址.\n" +
-				"3. 公司介绍.",
+			"welcome":"您好，我是Kwunphi怪虫机器人公司的智能客服，我可以提供一些常用服务和信息。"
 		},
 		"aboutUs":{
 			"aboutUs":"关于怪虫",

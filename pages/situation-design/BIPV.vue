@@ -10,8 +10,8 @@
           <div class="menu-container">
             <div v-for="(menu,MIndex) in tableList" class="menu-item" :class="{middleItem:MIndex===currentIndex,enMenu:locale.startsWith('cn')}"
                  @click="gotoSelectMenu(menu,MIndex)">
-              <h1>{{$t(menu.title)}}</h1>
-              <p>{{ $t(menu.summary)}}</p>
+              <h1>{{menu.title}}</h1>
+              <p>{{ menu.summary}}</p>
               <div class="menu-button">
                 <p>{{ $t('design.principle') }}{{MIndex+1}}</p>
               </div>

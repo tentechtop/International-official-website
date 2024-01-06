@@ -52,9 +52,9 @@
           <img v-if="message.role!=='user'" src="https://image.crisp.chat/avatar/operator/5ea15f83-614b-4f36-b038-5691f1f97d3a/240/?1695276836189">
           <div class="chat-message">
             <div class="role-container">
-              <h1>{{ message.role }}</h1>
+              <h1>{{ roleMap.get(message.role)  }}</h1>
             </div>
-            <div class="message-container">
+            <div class="message-container" v-copyText>
               <p class="res-message" :class="{userMessageRes:message.role==='user'}"  v-html="markedRender(message.content.replace(/^\n\n/, ''))"></p>
             </div>
           </div>
@@ -197,7 +197,7 @@ const messageList = ref<ChatMessage[]>([
     content: t('customer.welcome'),
   },
 ]);
-
+const roleMap  = ref(new Map().set('user','You').set('assistant','Kwunphi'))
 const emoList = ref([
   {
     name:"微笑",
@@ -235,15 +235,13 @@ function goToSendEmo(eItem){
 
 
 let apiKey = "sk-VcsMNS2JQziQbWaFdmRvHBVqzIH0Ph6QNLN5a1X8QdaemMQ7";
+const requestPath = ref('https://api.chatanywhere.com.cn/v1/chat/completions')
+
+
 let isConfig = ref(true);
 let isTalking = ref(false);
 const isOpenChatWindows = ref(false)
 let messageContent = ref("");
-
-
-
-
-
 
 
 
@@ -324,7 +322,7 @@ const sendChatMessage = async (content: string = messageContent.value) => {
 
     const controller = new AbortController()
     const signal = controller.signal
-    fetchEventSource('https://api.chatanywhere.com.cn/v1/chat/completions', {
+    fetchEventSource(requestPath.value, {
       method: 'POST',
       signal:signal,
       headers: {
@@ -637,7 +635,7 @@ function  handleScroll(event) {
   const scrollTop = event.target.scrollTop;
   if (scrollTop > previousScrollTop.value) {
  /*   console.log("向下滚动");*/
-
+    isUserScrollsUp.value=false
   } else if (scrollTop < previousScrollTop.value) {
 /*    console.log("向上滚动");*/
     isUserScrollsUp.value=true
@@ -651,9 +649,6 @@ onMounted(() => {
   if (getAPIKey()) {
     switchConfigStatus();
   }
-
-  // 页面增加滚动事件
-
 });
 
 
@@ -1033,6 +1028,7 @@ function isStringAllSpaces(inputString) {
   max-width: 100%;
 }
 .message-container{
+  position: relative;
   max-width: 332px;
 }
 .assistantMessage .chat-message .role-container{

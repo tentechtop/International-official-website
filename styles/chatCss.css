@@ -221,7 +221,7 @@ body {
 }
 
 .res-message > ol{
-    margin: 8px 0;
+    margin: 8px 11px 8px 0;
     transform: translateX(1rem);
 }
 
@@ -239,6 +239,10 @@ body {
 .res-message > ol >li::marker{
     font-size: 16px;
     color: #FFFFFF;
+}
+.res-message >p >a{
+    color: #FFFFFF;
+
 }
 
 .userMessageRes{
@@ -266,3 +270,68 @@ body {
     font-size: 16px;
     color: #1C293B;
 }
+
+
+.copyMessageButton{
+    cursor: pointer;
+    position: absolute;
+    bottom: -23px;
+    right: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+}
+.copyMessageButton:hover{
+    background-color: #f1f1f1;
+}
+
+.copyMessageButton:active{
+    background-color: #f1f1f1;
+}
+
+.copyMessageButton::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: url('https://file.kwunphi.com/kwunphi4/images/svg/%E5%A4%8D%E5%88%B6.svg') center center no-repeat;
+    background-size: cover; /* 根据需要调整背景图片的大小 */
+}
+
+.copyMessageButton:active::before {
+    background-image: url('https://file.kwunphi.com/kwunphi4/images/svg/%E6%88%90%E5%8A%9F.svg');
+}
+
+
+.alreadyCopied{
+    cursor: pointer;
+    position: absolute;
+    bottom: -23px;
+    right: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+}
+
+.alreadyCopied::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: url('https://file.kwunphi.com/kwunphi4/images/svg/%E6%88%90%E5%8A%9F.svg') center center no-repeat;
+    background-size: cover; /* 根据需要调整背景图片的大小 */
+}
+
+

@@ -722,7 +722,7 @@ function isStringAllSpaces(inputString) {
 }
 .chat-windows{
   z-index: 9999;
-  border-radius: 5px;
+  border-radius: 10px;
   position: fixed;
   right: 12px;
   bottom: 80px;
@@ -739,7 +739,7 @@ function isStringAllSpaces(inputString) {
   position: relative;
   padding: 10px 0;
   width: 100%;
-  height: 100px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -796,7 +796,7 @@ function isStringAllSpaces(inputString) {
 }
 
 .message-notice-container{
-  margin-top: 10px;
+  margin-top: 20px;
   width: auto;
   display: flex;
   flex-direction: row;

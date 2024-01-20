@@ -15,23 +15,12 @@ const NODE_ENV = process.env.NODE_ENV
 
 console.error("打包环境: "+NODE_ENV,"   语言环境: "+ LANG_ENV,"   主要语言: "+ LANG)
 export default defineNuxtConfig({
-    buildDir: LANG_ENV ? ('.nuxt-' + LANG_ENV) : '.nuxt',
-    build: {
-        // transpile: [/vue3-library-reproduction/]
-        /* meta: {
-            name: 'kwunphi',
-            version: '4.0.0'
-        } */
-    },
+    build: {},
     nitro: {
-        output: LANG_ENV ? {
-            dir: '../.output-' + LANG_ENV,
-            serverDir: '../.output-' + LANG_ENV + '/server',
-            publicDir: '../.output-' + LANG_ENV + '/public'
-        } : {
-            dir: '../.output',
-            serverDir: '../.output/server',
-            publicDir: '../.output/public'
+        output:  {
+            dir: '.output',
+            serverDir: '.output/server',
+            publicDir: '.output/public'
         },
         devProxy: {
             "/api": {

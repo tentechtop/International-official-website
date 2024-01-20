@@ -5,7 +5,13 @@ const messages = import.meta.globEager('../../locales/*');
 function getLocaleAll(): any {
     let message: any = {};
     for (const path in messages) {
-        const locale = path.substr(path.lastIndexOf('/') + 1, 2);
+        // 找到最后一个斜杠的位置
+        const lastSlashIndex = path.lastIndexOf('/');
+        // 截取从最后一个斜杠之后到字符串末尾的部分
+        const substringAfterLastSlash = path.substring(lastSlashIndex + 1);
+        // 找到文件扩展名的位置
+        const dotIndex = substringAfterLastSlash.lastIndexOf('.');
+        const locale = dotIndex !== -1 ? substringAfterLastSlash.substring(0, dotIndex) : substringAfterLastSlash;
         // @ts-ignore
         message[locale] = messages[path].default;
     }

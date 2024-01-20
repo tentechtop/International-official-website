@@ -1,4 +1,5 @@
 export default {
+    // @ts-ignore
     mounted(el, binding) {
         el.addEventListener('mouseenter', () => {
             // 检查是否已经存在一个按钮

@@ -1,6 +1,6 @@
 export default {
+    // @ts-ignore
     mounted(el,binding){
-
         // 获取按钮的初始文字(获取验证码)
         const normalText = el.innerText;
         // 定义倒计时初始值，如果传有就使用传过来的，没有则默认60秒
